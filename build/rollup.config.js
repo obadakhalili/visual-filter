@@ -117,7 +117,7 @@ if (!argv.format || argv.format === "cjs") {
     external,
     output: {
       compact: true,
-      file: "dist/vue-visual-filter.ssr.js",
+      file: "dist/vue-visual-filter.cjs.js",
       format: "cjs",
       name: "VueVisualFilter",
       exports: "auto",
@@ -162,6 +162,16 @@ if (!argv.format || argv.format === "iife") {
     ]
   }
   buildFormats.push(unpkgConfig)
+}
+
+if (!argv.format) {
+  buildFormats.push({
+    input: "src/index.css",
+    output: {
+      file: "dist/vue-visual-filter.css"
+    },
+    plugins: [PostCSS({ extract: true })]
+  })
 }
 
 // Export config
