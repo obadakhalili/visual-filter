@@ -1,1 +1,4 @@
-module.exports = { "semi": false }
+module.exports = {
+  semi: false,
+  arrowParens: "always"
+}

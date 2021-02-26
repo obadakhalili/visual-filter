@@ -12,5 +12,13 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: "module"
   },
-  plugins: ["vue"]
+  plugins: ["vue"],
+  overrides: [
+    {
+      files: ["*.vue"],
+      rules: {
+        "vue/no-multiple-template-root": "off"
+      }
+    }
+  ]
 }
