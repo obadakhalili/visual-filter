@@ -1,7 +1,7 @@
 <script>
 export default {
   name: "FilterCondition",
-  emits: ["updateArgument", "deleteCondition"],
+  emits: ["updateMethod", "updateArgument", "deleteCondition"],
   props: [
     "condition",
     "fieldNames",
@@ -10,6 +10,21 @@ export default {
     "DataType"
   ],
   methods: {
+    updateMethod(e) {
+      const newMethodName = e.target.value
+
+      if (
+        this.condition.dataType === this.DataType.NUMERIC &&
+        this.numericMethodNames.includes(newMethodName)
+      ) {
+        this.$emit("updateMethod", this.condition, newMethodName)
+      } else if (
+        this.condition.dataType === this.DataType.NOMINAL &&
+        this.nominalMethodNames.includes(newMethodName)
+      ) {
+        this.$emit("updateMethod", this.condition, newMethodName)
+      }
+    },
     updateArgument(e) {
       let newArgumentValue = e.target.value
 
@@ -39,7 +54,7 @@ export default {
         {{ field }}
       </option>
     </select>
-    <select>
+    <select @change="updateMethod">
       <option
         v-for="method in condition.dataType === DataType.NUMERIC
           ? numericMethodNames

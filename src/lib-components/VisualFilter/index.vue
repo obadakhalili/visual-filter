@@ -45,6 +45,9 @@ export default {
     }
   },
   methods: {
+    updateConditionMethod(condition, newMethodName) {
+      condition.method = newMethodName
+    },
     updateConditionArgument(condition, newArgumentValue) {
       condition.argument = newArgumentValue
     },
@@ -114,6 +117,7 @@ export default {
           numericMethodNames: this.numericMethodNames,
           nominalMethodNames: this.nominalMethodNames,
           DataType,
+          onUpdateMethod: this.updateConditionMethod,
           onUpdateArgument: this.updateConditionArgument,
           onDeleteCondition: this.deleteFilter
         })
