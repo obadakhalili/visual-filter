@@ -48,7 +48,7 @@ export default {
     updateConditionArgument(condition, newArgumentValue) {
       condition.argument = newArgumentValue
     },
-    changeGroupType(group, newGroupType) {
+    updateGroupType(group, newGroupType) {
       group.groupType = newGroupType
     },
     addFilter(filters, newFilterType) {
@@ -101,7 +101,7 @@ export default {
             removable: filter !== this.filter,
             filterTypes: Object.values(FilterType),
             groupTypes: Object.values(GroupType),
-            onChangeGroupType: this.changeGroupType,
+            onUpdateGroupType: this.updateGroupType,
             onAddFilter: this.addFilter,
             onDeleteGroup: this.deleteFilter
           },
