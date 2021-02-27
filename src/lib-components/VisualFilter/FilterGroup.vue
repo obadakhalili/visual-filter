@@ -36,7 +36,7 @@ export default {
     </select>
     <button v-if="removable" @click="$emit('removeGroup', group)">x</button>
   </div>
-  <div v-if="group.filters.length" class="ml-5 my-2">
+  <div v-if="group.filters.length" class="ml-10 mt-2 space-y-2">
     <slot></slot>
   </div>
 </template>

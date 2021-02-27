@@ -34,6 +34,9 @@ export default {
     }
   },
   computed: {
+    fieldNames() {
+      return this.filteringOptions.data.map((field) => field.name)
+    },
     numericMethodNames() {
       return Object.keys(this.filteringOptions.methods.numeric)
     },
@@ -42,6 +45,9 @@ export default {
     }
   },
   methods: {
+    updateConditionArgument(condition, newArgumentValue) {
+      condition.argument = newArgumentValue
+    },
     changeGroupType(group, newGroupType) {
       group.groupType = newGroupType
     },
@@ -102,7 +108,15 @@ export default {
           () => filter.filters.map(createVisualizer)
         )
       } else {
-        return h(FilterCondition)
+        return h(FilterCondition, {
+          condition: filter,
+          fieldNames: this.fieldNames,
+          numericMethodNames: this.numericMethodNames,
+          nominalMethodNames: this.nominalMethodNames,
+          DataType,
+          onRemoveCondition: this.removeFilter,
+          onUpdateArgument: this.updateConditionArgument
+        })
       }
     }
 
