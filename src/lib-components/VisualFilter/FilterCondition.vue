@@ -1,7 +1,7 @@
 <script>
 export default {
   name: "FilterCondition",
-  emits: ["updateMethod", "updateArgument", "deleteCondition"],
+  emits: ["updateField", "updateMethod", "updateArgument", "deleteCondition"],
   props: [
     "condition",
     "fieldNames",
@@ -10,6 +10,13 @@ export default {
     "DataType"
   ],
   methods: {
+    updateField(e) {
+      const newFieldName = e.target.value
+
+      if (this.fieldNames.includes(newFieldName)) {
+        this.$emit("updateField", this.condition, newFieldName)
+      }
+    },
     updateMethod(e) {
       const newMethodName = e.target.value
 
@@ -44,7 +51,7 @@ export default {
 
 <template>
   <div class="space-x-2">
-    <select>
+    <select @change="updateField">
       <option
         v-for="field in fieldNames"
         :key="field"
