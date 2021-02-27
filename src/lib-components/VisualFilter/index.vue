@@ -2,6 +2,24 @@
 import { h } from "vue"
 import FilterGroup from "./FilterGroup"
 import FilterCondition from "./FilterCondition"
+import { createEnum } from "../../helpers"
+
+const FilterType = createEnum({
+  GROUP: "group",
+  CONDITION: "condition"
+})
+
+const GroupType = createEnum({
+  AND: "and",
+  NOT_AND: "not and",
+  OR: "or",
+  NOT_OR: "not or"
+})
+
+const DataType = createEnum({
+  NUMERIC: "numeric",
+  NOMINAL: "nominal"
+})
 
 export default {
   name: "VisualFilter",
@@ -9,8 +27,8 @@ export default {
   data() {
     return {
       filter: {
-        type: "group",
-        groupType: "and",
+        type: FilterType.GROUP,
+        groupType: GroupType.AND,
         filters: []
       }
     }
@@ -28,10 +46,10 @@ export default {
       group.groupType = newGroupType
     },
     addFilter(filters, newFilterType) {
-      if (newFilterType === "group") {
+      if (newFilterType === FilterType.GROUP) {
         filters.push({
-          type: "group",
-          groupType: "and",
+          type: FilterType.GROUP,
+          groupType: GroupType.AND,
           filters: []
         })
       } else {
@@ -42,11 +60,11 @@ export default {
         } = this.filteringOptions.data[0]
 
         filters.push({
-          type: "condition",
+          type: FilterType.CONDITION,
           fieldName: name,
           dataType: type,
           method:
-            type === "numeric"
+            type === DataType.NUMERIC
               ? this.numericMethodNames[0]
               : this.nominalMethodNames[0],
           argument: sampleValue
@@ -57,7 +75,7 @@ export default {
       function recursiveDeletion(filter, index, filters) {
         if (filter === filterToDelete) {
           filters.splice(index, 1)
-        } else if (filter.type === "group") {
+        } else if (filter.type === FilterType.GROUP) {
           filter.filters.map(recursiveDeletion)
         }
       }
@@ -69,12 +87,14 @@ export default {
   },
   render() {
     const createVisualizer = (filter) => {
-      if (filter.type === "group") {
+      if (filter.type === FilterType.GROUP) {
         return h(
           FilterGroup,
           {
             group: filter,
             removable: filter !== this.filter,
+            filterTypes: Object.values(FilterType),
+            groupTypes: Object.values(GroupType),
             onChangeGroupType: this.changeGroupType,
             onAddFilter: this.addFilter,
             onRemoveGroup: this.removeFilter
