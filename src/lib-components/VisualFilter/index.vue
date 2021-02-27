@@ -24,6 +24,9 @@ export default {
     }
   },
   methods: {
+    changeGroupType(group, newGroupType) {
+      group.groupType = newGroupType
+    },
     addFilter(filters, newFilterType) {
       if (newFilterType === "group") {
         filters.push({
@@ -50,8 +53,18 @@ export default {
         })
       }
     },
-    changeGroupType(group, newGroupType) {
-      group.groupType = newGroupType
+    removeFilter(filterToDelete) {
+      function recursiveDeletion(filter, index, filters) {
+        if (filter === filterToDelete) {
+          filters.splice(index, 1)
+        } else if (filter.type === "group") {
+          filter.filters.map(recursiveDeletion)
+        }
+      }
+
+      if (filterToDelete !== this.filter) {
+        recursiveDeletion(this.filter)
+      }
     }
   },
   render() {
@@ -61,8 +74,10 @@ export default {
           FilterGroup,
           {
             group: filter,
+            removable: filter !== this.filter,
+            onChangeGroupType: this.changeGroupType,
             onAddFilter: this.addFilter,
-            onChangeGroupType: this.changeGroupType
+            onRemoveGroup: this.removeFilter
           },
           () => filter.filters.map(createVisualizer)
         )

@@ -1,26 +1,26 @@
 <script>
 export default {
   name: "FilterGroup",
-  emits: ["addFilter", "changeGroupType"],
-  props: ["group"],
+  emits: ["changeGroupType", "addFilter", "removeGroup"],
+  props: ["group", "removable"],
   data() {
     return {
       groupTypes: ["and", "not and", "or", "not or"]
     }
   },
   methods: {
-    addFilter(e) {
-      const newFilterType = e.target.value
-
-      if (newFilterType === "group" || newFilterType === "condition") {
-        this.$emit("addFilter", this.group.filters, newFilterType)
-      }
-    },
     changeGroupType(e) {
       const newGroupType = e.target.value
 
       if (this.groupTypes.includes(newGroupType)) {
         this.$emit("changeGroupType", this.group, newGroupType)
+      }
+    },
+    addFilter(e) {
+      const newFilterType = e.target.value
+
+      if (newFilterType === "group" || newFilterType === "condition") {
+        this.$emit("addFilter", this.group.filters, newFilterType)
       }
     }
   }
@@ -28,15 +28,18 @@ export default {
 </script>
 
 <template>
-  <select @change="changeGroupType" class="mr-2">
-    <option v-for="type in this.groupTypes" :key="type" :value="type">
-      {{ type }}
-    </option>
-  </select>
-  <select @change="addFilter">
-    <option value="group">Group</option>
-    <option value="condition">Condition</option>
-  </select>
+  <div class="space-x-3">
+    <select @change="changeGroupType">
+      <option v-for="type in this.groupTypes" :key="type" :value="type">
+        {{ type }}
+      </option>
+    </select>
+    <select @change="addFilter">
+      <option value="group">Group</option>
+      <option value="condition">Condition</option>
+    </select>
+    <button v-if="removable" @click="$emit('removeGroup', group)">x</button>
+  </div>
   <div v-if="group.filters.length" class="ml-5 mt-2">
     <slot></slot>
   </div>
