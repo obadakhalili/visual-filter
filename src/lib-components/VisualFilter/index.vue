@@ -77,7 +77,7 @@ export default {
         })
       }
     },
-    removeFilter(filterToDelete) {
+    deleteFilter(filterToDelete) {
       function recursiveDeletion(filter, index, filters) {
         if (filter === filterToDelete) {
           filters.splice(index, 1)
@@ -103,7 +103,7 @@ export default {
             groupTypes: Object.values(GroupType),
             onChangeGroupType: this.changeGroupType,
             onAddFilter: this.addFilter,
-            onRemoveGroup: this.removeFilter
+            onDeleteGroup: this.deleteFilter
           },
           () => filter.filters.map(createVisualizer)
         )
@@ -114,7 +114,7 @@ export default {
           numericMethodNames: this.numericMethodNames,
           nominalMethodNames: this.nominalMethodNames,
           DataType,
-          onRemoveCondition: this.removeFilter,
+          onDeleteCondition: this.deleteFilter,
           onUpdateArgument: this.updateConditionArgument
         })
       }

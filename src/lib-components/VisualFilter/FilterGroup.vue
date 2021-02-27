@@ -1,7 +1,7 @@
 <script>
 export default {
   name: "FilterGroup",
-  emits: ["changeGroupType", "addFilter", "removeGroup"],
+  emits: ["changeGroupType", "addFilter", "deleteGroup"],
   props: ["group", "removable", "filterTypes", "groupTypes"],
   methods: {
     changeGroupType(e) {
@@ -34,7 +34,7 @@ export default {
         {{ type }}
       </option>
     </select>
-    <button v-if="removable" @click="$emit('removeGroup', group)">x</button>
+    <button v-if="removable" @click="$emit('deleteGroup', group)">x</button>
   </div>
   <div v-if="group.filters.length" class="ml-10 mt-2 space-y-2">
     <slot></slot>

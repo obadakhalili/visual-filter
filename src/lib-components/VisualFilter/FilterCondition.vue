@@ -1,7 +1,7 @@
 <script>
 export default {
   name: "FilterCondition",
-  emits: ["updateArgument", "removeCondition"],
+  emits: ["updateArgument", "deleteCondition"],
   props: [
     "condition",
     "fieldNames",
@@ -52,6 +52,6 @@ export default {
       </option>
     </select>
     <input type="text" @input="updateArgument" :value="condition.argument" />
-    <button @click="$emit('removeCondition', condition)">x</button>
+    <button @click="$emit('deleteCondition', condition)">x</button>
   </div>
 </template>
