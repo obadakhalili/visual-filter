@@ -1,7 +1,7 @@
 <script>
 import { h } from "vue"
-import FilterGroup from "./FilterGroup"
-import FilterCondition from "./FilterCondition"
+import FilterGroup from "./FilterGroup.vue"
+import FilterCondition from "./FilterCondition.vue"
 import { createEnum } from "../../helpers"
 
 const FilterType = createEnum({
