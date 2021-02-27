@@ -101,7 +101,7 @@ export default {
             removable: filter !== this.filter,
             filterTypes: Object.values(FilterType),
             groupTypes: Object.values(GroupType),
-            onUpdateGroupType: this.updateGroupType,
+            onUpdateType: this.updateGroupType,
             onAddFilter: this.addFilter,
             onDeleteGroup: this.deleteFilter
           },
@@ -114,8 +114,8 @@ export default {
           numericMethodNames: this.numericMethodNames,
           nominalMethodNames: this.nominalMethodNames,
           DataType,
-          onDeleteCondition: this.deleteFilter,
-          onUpdateArgument: this.updateConditionArgument
+          onUpdateArgument: this.updateConditionArgument,
+          onDeleteCondition: this.deleteFilter
         })
       }
     }

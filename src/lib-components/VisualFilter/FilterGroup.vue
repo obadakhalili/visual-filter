@@ -1,14 +1,14 @@
 <script>
 export default {
   name: "FilterGroup",
-  emits: ["updateGroupType", "addFilter", "deleteGroup"],
+  emits: ["updateType", "addFilter", "deleteGroup"],
   props: ["group", "removable", "filterTypes", "groupTypes"],
   methods: {
-    updateGroupType(e) {
+    updateType(e) {
       const newGroupType = e.target.value
 
       if (this.groupTypes.includes(newGroupType)) {
-        this.$emit("updateGroupType", this.group, newGroupType)
+        this.$emit("updateType", this.group, newGroupType)
       }
     },
     addFilter(e) {
@@ -24,7 +24,7 @@ export default {
 
 <template>
   <div class="space-x-3">
-    <select @change="updateGroupType">
+    <select @change="updateType">
       <option v-for="type in groupTypes" :key="type" :value="type">
         {{ type }}
       </option>
