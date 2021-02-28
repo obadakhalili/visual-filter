@@ -55,7 +55,7 @@ export default {
       if (this.condition.dataType === this.DataType.NUMERIC) {
         newArgumentValue = Number(newArgumentValue)
 
-        if (newArgumentValue) {
+        if (isNaN(newArgumentValue) === false) {
           this.$emit("updateArgument", this.condition, newArgumentValue)
         }
       } else {
