@@ -1,14 +1,31 @@
 <script>
+const objectPropAttrs = {
+  type: Object,
+  required: true,
+  validator(value) {
+    return value.constructor === Object
+  }
+}
+
 export default {
   name: "FilterCondition",
   emits: ["updateField", "updateMethod", "updateArgument", "deleteCondition"],
-  props: [
-    "condition",
-    "fieldNames",
-    "numericMethodNames",
-    "nominalMethodNames",
-    "DataType"
-  ],
+  props: {
+    condition: objectPropAttrs,
+    fieldNames: {
+      type: Array,
+      required: true
+    },
+    numericMethodNames: {
+      type: Array,
+      required: true
+    },
+    nominalMethodNames: {
+      type: Array,
+      required: true
+    },
+    DataType: objectPropAttrs
+  },
   methods: {
     updateField(e) {
       const newFieldName = e.target.value
