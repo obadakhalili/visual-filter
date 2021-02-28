@@ -23,7 +23,34 @@ const DataType = createEnum({
 
 export default {
   name: "VisualFilter",
-  props: ["filteringOptions"],
+  props: {
+    filteringOptions: {
+      type: Object,
+      required: true,
+      validator(value) {
+        try {
+          return (
+            value.data.length &&
+            value.data.every(
+              (field) =>
+                typeof field.name === "string" &&
+                typeof field.type === "string" &&
+                field.values.constructor === Array
+            ) &&
+            value.methods.numeric &&
+            Object.values(value.methods.numeric).every(
+              (method) => typeof method === "function"
+            ) &&
+            Object.values(value.methods.nominal).every(
+              (method) => typeof method === "function"
+            )
+          )
+        } catch {
+          return false
+        }
+      }
+    }
+  },
   data() {
     return {
       filter: {
