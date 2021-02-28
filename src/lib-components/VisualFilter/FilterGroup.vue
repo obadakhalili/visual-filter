@@ -23,20 +23,22 @@ export default {
 </script>
 
 <template>
-  <div class="space-x-3">
-    <select @change="updateType">
-      <option v-for="type in groupTypes" :key="type" :value="type">
-        {{ type }}
-      </option>
-    </select>
-    <select @change="addFilter">
-      <option v-for="type in filterTypes" :key="type" :value="type">
-        {{ type }}
-      </option>
-    </select>
-    <button v-if="removable" @click="$emit('deleteGroup', group)">x</button>
-  </div>
-  <div v-if="group.filters.length" class="ml-10 mt-2 space-y-2">
-    <slot></slot>
+  <div class="space-y-4">
+    <div class="space-x-2">
+      <select @change="updateType">
+        <option v-for="type in groupTypes" :key="type" :value="type">
+          {{ type }}
+        </option>
+      </select>
+      <select @change="addFilter">
+        <option v-for="type in filterTypes" :key="type" :value="type">
+          {{ type }}
+        </option>
+      </select>
+      <button v-if="removable" @click="$emit('deleteGroup', group)">x</button>
+    </div>
+    <div v-if="group.filters.length" class="ml-10 space-y-1">
+      <slot></slot>
+    </div>
   </div>
 </template>
