@@ -67,7 +67,7 @@ export default {
   <div id="app">
     <VueVisualFilter
       :filtering-options="filteringOptions"
-      @update="captureFilterUpdate"
+      @filter-update="captureFilterUpdate"
     ></VueVisualFilter>
   </div>
 </template>

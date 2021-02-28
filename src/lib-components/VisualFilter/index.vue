@@ -23,6 +23,7 @@ const DataType = createEnum({
 
 export default {
   name: "VisualFilter",
+  emits: ["filterUpdate"],
   props: {
     filteringOptions: {
       type: Object,
@@ -75,7 +76,7 @@ export default {
     filter: {
       deep: true,
       handler() {
-        this.$attrs.onUpdate(deepCopy(this.filter))
+        this.$emit("filterUpdate", deepCopy(this.filter))
       }
     }
   },
