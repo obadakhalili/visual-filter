@@ -2,7 +2,27 @@
 export default {
   name: "FilterGroup",
   emits: ["updateType", "addFilter", "deleteGroup"],
-  props: ["group", "removable", "filterTypes", "groupTypes"],
+  props: {
+    group: {
+      type: Object,
+      required: true,
+      validator(value) {
+        return value.constructor === Object
+      }
+    },
+    filterTypes: {
+      type: Array,
+      required: true
+    },
+    groupTypes: {
+      type: Array,
+      required: true
+    },
+    removable: {
+      type: Boolean,
+      required: true
+    }
+  },
   methods: {
     updateType(e) {
       const newGroupType = e.target.value

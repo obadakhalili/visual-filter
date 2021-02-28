@@ -143,9 +143,9 @@ export default {
           FilterGroup,
           {
             group: filter,
-            removable: filter !== this.filter,
             filterTypes: Object.values(FilterType),
             groupTypes: Object.values(GroupType),
+            removable: filter !== this.filter,
             onUpdateType: this.updateGroupType,
             onAddFilter: this.addFilter,
             onDeleteGroup: this.deleteFilter
