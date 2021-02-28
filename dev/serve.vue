@@ -53,12 +53,21 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    captureFilterUpdate(filter) {
+      // Do what ever you want with filter. It's in-reactive
+      filter
+    }
   }
 }
 </script>
 
 <template>
   <div id="app">
-    <VueVisualFilter :filtering-options="filteringOptions" />
+    <VueVisualFilter
+      :filtering-options="filteringOptions"
+      @update="captureFilterUpdate"
+    ></VueVisualFilter>
   </div>
 </template>

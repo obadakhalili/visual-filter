@@ -2,7 +2,7 @@
 import { h } from "vue"
 import FilterGroup from "./FilterGroup.vue"
 import FilterCondition from "./FilterCondition.vue"
-import { createEnum } from "../../helpers.js"
+import { createEnum, deepCopy } from "../../helpers.js"
 
 const FilterType = createEnum({
   GROUP: "group",
@@ -69,6 +69,14 @@ export default {
     },
     nominalMethodNames() {
       return Object.keys(this.filteringOptions.methods.nominal)
+    }
+  },
+  watch: {
+    filter: {
+      deep: true,
+      handler() {
+        this.$attrs.onUpdate(deepCopy(this.filter))
+      }
     }
   },
   methods: {
