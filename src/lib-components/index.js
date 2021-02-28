@@ -1,1 +1,1 @@
-export { default as VueVisualFilter } from "./VisualFilter/index.vue"
+export { default as FilterBuilder } from "./FilterBuilder/index.vue"

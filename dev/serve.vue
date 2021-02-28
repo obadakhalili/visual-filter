@@ -65,9 +65,9 @@ export default {
 
 <template>
   <div id="app">
-    <VueVisualFilter
+    <FilterBuilder
       :filtering-options="filteringOptions"
       @filter-update="captureFilterUpdate"
-    ></VueVisualFilter>
+    ></FilterBuilder>
   </div>
 </template>
