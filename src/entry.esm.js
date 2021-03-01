@@ -1,10 +1,11 @@
-import * as components from "@/lib-components/index"
+import component from "@/VueVisualFilter/index.vue"
 import "@/index.css"
 
-export default function(app) {
-  Object.entries(components).forEach(([componentName, component]) =>
-    app.component(componentName, component)
-  )
-}
+export default (() => {
+  const installable = component
 
-export * from "@/lib-components/index"
+  installable.install = (app) => {
+    app.component("VueVisualFilter", installable)
+  }
+  return installable
+})()

@@ -16,7 +16,7 @@ const esbrowserslist = fs
   .readFileSync("./.browserslistrc")
   .toString()
   .split("\n")
-  .filter(entry => entry && entry.substring(0, 2) !== "ie")
+  .filter((entry) => entry && entry.substring(0, 2) !== "ie")
 
 const argv = minimist(process.argv.slice(2))
 
@@ -168,7 +168,7 @@ if (!argv.format) {
   buildFormats.push({
     input: "src/index.css",
     output: {
-      file: "dist/vue-visual-filter.css"
+      file: "dist/styles.css"
     },
     plugins: [PostCSS({ extract: true })]
   })

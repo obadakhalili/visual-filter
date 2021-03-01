@@ -2,7 +2,7 @@
 import { h } from "vue"
 import FilterGroup from "./FilterGroup.vue"
 import FilterCondition from "./FilterCondition.vue"
-import { createEnum, deepCopy } from "../../helpers.js"
+import { createEnum, deepCopy } from "@/helpers.js"
 
 const FilterType = createEnum({
   GROUP: "group",

@@ -1,9 +1,9 @@
-import plugin, * as components from "@/entry.esm"
+import component, * as namedExports from "@/entry.esm"
 
-Object.entries(components).forEach(([componentName, component]) => {
-  if (componentName !== "default") {
-    plugin[componentName] = component
+Object.entries(namedExports).forEach(([exportName, exported]) => {
+  if (exportName !== "default") {
+    component[exportName] = exported
   }
 })
 
-export default plugin
+export default component

@@ -1,7 +1,7 @@
 {
   "name": "vue-visual-filter",
   "version": "1.0.0",
-  "description": "An unopinionated Vue visual filtering library",
+  "description": "An unopinionated Vue visual filtering component",
   "main": "dist/vue-visual-filter.cjs.js",
   "browser": "dist/vue-visual-filter.esm.js",
   "module": "dist/vue-visual-filter.esm.js",
@@ -33,7 +33,7 @@
     "@vue/compiler-sfc": "^3.0.5",
     "autoprefixer": "^9.8.6",
     "cross-env": "^7.0.3",
-    "eslint": "^7.20.0",
+    "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.6.0",
