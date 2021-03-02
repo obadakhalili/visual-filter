@@ -41,13 +41,13 @@ export default {
           },
           nominal: {
             contains(cellValue, argument) {
-              return cellValue.contains(argument)
-            },
-            endsWith(cellValue, argument) {
-              return cellValue.endsWith(argument)
+              return cellValue.includes(argument)
             },
             startsWith(cellValue, argument) {
               return cellValue.startsWith(argument)
+            },
+            endsWith(cellValue, argument) {
+              return cellValue.endsWith(argument)
             }
           }
         }
@@ -55,9 +55,9 @@ export default {
     }
   },
   methods: {
-    captureFilterUpdate(filter) {
-      // Do what ever you want with filter. It's in-reactive
-      filter
+    captureFilterUpdate(ctx) {
+      // ctx object that contains in-reactive clones of filter, and data objects
+      ctx
     }
   }
 }

@@ -2,14 +2,14 @@
 import { h } from "vue"
 import FilterGroup from "./FilterGroup.vue"
 import FilterCondition from "./FilterCondition.vue"
-import { createEnum, deepCopy } from "@/helpers.js"
+import { createEnum, deepCopy, applyFilter } from "@/helpers.js"
 
-const FilterType = createEnum({
+export const FilterType = createEnum({
   GROUP: "group",
   CONDITION: "condition"
 })
 
-const GroupType = createEnum({
+export const GroupType = createEnum({
   AND: "and",
   NOT_AND: "not and",
   OR: "or",
@@ -76,7 +76,14 @@ export default {
     filter: {
       deep: true,
       handler() {
-        this.$emit("filterUpdate", deepCopy(this.filter))
+        this.$emit("filterUpdate", {
+          filter: deepCopy(this.filter),
+          data: applyFilter(
+            this.filter,
+            this.filteringOptions.methods,
+            deepCopy(this.filteringOptions.data)
+          )
+        })
       }
     }
   },
