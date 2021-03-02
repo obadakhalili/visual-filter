@@ -166,7 +166,12 @@ export default {
             onAddFilter: this.addFilter,
             onDeleteGroup: this.deleteFilter
           },
-          () => filter.filters.map(createVisualizer)
+          {
+            groupTypes: this.$slots.groupTypes,
+            filterAddition: this.$slots.filterAddition,
+            filterDeletion: this.$slots.filterDeletion,
+            groupChildren: () => filter.filters.map(createVisualizer)
+          }
         )
       } else {
         return h(FilterCondition, {

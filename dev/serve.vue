@@ -68,6 +68,24 @@ export default {
     <VueVisualFilter
       :filtering-options="filteringOptions"
       @filter-update="captureFilterUpdate"
-    ></VueVisualFilter>
+    >
+      <template #groupTypes="{ groupTypes, updateType }">
+        <select @change="updateType($event.target.value)">
+          <option v-for="type in groupTypes" :key="type" :value="type">
+            {{ type }}
+          </option>
+        </select>
+      </template>
+      <template #filterAddition="{ filterTypes, addFilter }">
+        <select @change="addFilter($event.target.value)">
+          <option v-for="type in filterTypes" :key="type" :value="type">
+            {{ type }}
+          </option>
+        </select>
+      </template>
+      <template #filterDeletion="{ deleteGroup }">
+        <button @click="deleteGroup">x</button>
+      </template>
+    </VueVisualFilter>
   </div>
 </template>
