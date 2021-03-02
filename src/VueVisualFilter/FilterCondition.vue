@@ -1,17 +1,17 @@
 <script>
-const objectPropAttrs = {
-  type: Object,
-  required: true,
-  validator(value) {
-    return value.constructor === Object
-  }
-}
+import { DataType } from "./index.vue"
 
 export default {
   name: "FilterCondition",
   emits: ["updateField", "updateMethod", "updateArgument", "deleteCondition"],
   props: {
-    condition: objectPropAttrs,
+    condition: {
+      type: Object,
+      required: true,
+      validator(value) {
+        return value.constructor === Object
+      }
+    },
     fieldNames: {
       type: Array,
       required: true
@@ -23,8 +23,10 @@ export default {
     nominalMethodNames: {
       type: Array,
       required: true
-    },
-    DataType: objectPropAttrs
+    }
+  },
+  data() {
+    return { DataType }
   },
   methods: {
     updateField(e) {

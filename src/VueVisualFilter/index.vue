@@ -16,7 +16,7 @@ export const GroupType = createEnum({
   NOT_OR: "not or"
 })
 
-const DataType = createEnum({
+export const DataType = createEnum({
   NUMERIC: "numeric",
   NOMINAL: "nominal"
 })
@@ -174,7 +174,6 @@ export default {
           fieldNames: this.fieldNames,
           numericMethodNames: this.numericMethodNames,
           nominalMethodNames: this.nominalMethodNames,
-          DataType,
           onUpdateField: this.updateConditionField,
           onUpdateMethod: this.updateConditionMethod,
           onUpdateArgument: this.updateConditionArgument,
