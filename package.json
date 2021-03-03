@@ -1,6 +1,6 @@
 {
   "name": "vue-visual-filter",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "An unopinionated Vue visual filtering component",
   "main": "dist/vue-visual-filter.cjs.js",
   "browser": "dist/vue-visual-filter.esm.js",
