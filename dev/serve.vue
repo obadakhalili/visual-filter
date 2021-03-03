@@ -86,6 +86,36 @@ export default {
       <template #filterDeletion="{ deleteGroup }">
         <button @click="deleteGroup">x</button>
       </template>
+      <template #fieldUpdation="{ fieldNames, updateField }">
+        <select @change="updateField($event.target.value)">
+          <option v-for="field in fieldNames" :key="field" :value="field">
+            {{ field }}
+          </option>
+        </select>
+      </template>
+      <template
+        #methodUpdation="{ numericMethodNames, nominalMethodNames, updateMethod }"
+      >
+        <select @change="updateMethod($event.target.value)">
+          <option
+            v-for="method in numericMethodNames || nominalMethodNames"
+            :key="method"
+            :value="method"
+          >
+            {{ method }}
+          </option>
+        </select>
+      </template>
+      <template #argumentUpdation="{ argument, updateArgument }">
+        <input
+          type="text"
+          @input="updateArgument($event.target.value)"
+          :value="argument"
+        />
+      </template>
+      <template #conditionDeletion="{ deleteCondition }">
+        <button @click="deleteCondition">x</button>
+      </template>
     </VueVisualFilter>
   </div>
 </template>

@@ -174,16 +174,25 @@ export default {
           }
         )
       } else {
-        return h(FilterCondition, {
-          condition: filter,
-          fieldNames: this.fieldNames,
-          numericMethodNames: this.numericMethodNames,
-          nominalMethodNames: this.nominalMethodNames,
-          onUpdateField: this.updateConditionField,
-          onUpdateMethod: this.updateConditionMethod,
-          onUpdateArgument: this.updateConditionArgument,
-          onDeleteCondition: this.deleteFilter
-        })
+        return h(
+          FilterCondition,
+          {
+            condition: filter,
+            fieldNames: this.fieldNames,
+            numericMethodNames: this.numericMethodNames,
+            nominalMethodNames: this.nominalMethodNames,
+            onUpdateField: this.updateConditionField,
+            onUpdateMethod: this.updateConditionMethod,
+            onUpdateArgument: this.updateConditionArgument,
+            onDeleteCondition: this.deleteFilter
+          },
+          {
+            fieldUpdation: this.$slots.fieldUpdation,
+            methodUpdation: this.$slots.methodUpdation,
+            argumentUpdation: this.$slots.argumentUpdation,
+            conditionDeletion: this.$slots.conditionDeletion
+          }
+        )
       }
     }
 
