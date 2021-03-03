@@ -83,7 +83,7 @@ export default {
           </option>
         </select>
       </template>
-      <template #filterDeletion="{ deleteGroup }">
+      <template #groupDeletion="{ deleteGroup }">
         <button @click="deleteGroup">x</button>
       </template>
       <template #fieldUpdation="{ fieldNames, updateField }">

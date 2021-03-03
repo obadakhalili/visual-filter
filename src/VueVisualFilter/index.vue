@@ -169,7 +169,7 @@ export default {
           {
             groupTypes: this.$slots.groupTypes,
             filterAddition: this.$slots.filterAddition,
-            filterDeletion: this.$slots.filterDeletion,
+            groupDeletion: this.$slots.filterDeletion,
             groupChildren: () => filter.filters.map(createVisualizer)
           }
         )

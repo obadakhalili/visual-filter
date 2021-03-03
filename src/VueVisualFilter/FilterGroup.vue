@@ -61,7 +61,7 @@ export default {
       </slot>
       <slot
         v-if="removable"
-        name="filterDeletion"
+        name="groupDeletion"
         :deleteGroup="() => $emit('deleteGroup', group)"
       >
         <button @click="$emit('deleteGroup', group)">x</button>
