@@ -126,9 +126,20 @@ export default {
       <template
         #methodUpdation="{ numericMethodNames, nominalMethodNames, condition }"
       >
-        <el-select v-model="condition.method" size="small">
+        <el-select
+          v-if="numericMethodNames"
+          v-model="condition.method"
+          size="small"
+        >
           <el-option
-            v-for="method in numericMethodNames || nominalMethodNames"
+            v-for="method in numericMethodNames"
+            :key="method"
+            :value="method"
+          ></el-option>
+        </el-select>
+        <el-select v-else v-model="condition.method" size="small">
+          <el-option
+            v-for="method in nominalMethodNames"
             :key="method"
             :value="method"
           ></el-option>
