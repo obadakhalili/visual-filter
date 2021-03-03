@@ -70,21 +70,41 @@ export default {
       @filter-update="captureFilterUpdate"
     >
       <template #groupTypes="{ groupTypes, group }">
-        <select v-model="group.groupType">
-          <option v-for="type in groupTypes" :key="type" :value="type">
-            {{ type }}
-          </option>
-        </select>
+        <el-select v-model="group.groupType" size="small">
+          <el-option v-for="type in groupTypes" :key="type" :value="type">
+          </el-option>
+        </el-select>
       </template>
       <template #filterAddition="{ filterTypes, addFilter }">
-        <select @change="addFilter($event.target.value)">
-          <option v-for="type in filterTypes" :key="type" :value="type">
-            {{ type }}
-          </option>
-        </select>
+        <el-dropdown
+          @command="addFilter"
+          split-button
+          trigger="click"
+          type="primary"
+          size="mini"
+        >
+          <i class="el-icon-plus"></i>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item
+                v-for="filter in filterTypes"
+                :key="filter"
+                :command="filter"
+              >
+                {{ filter }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </template>
       <template #groupDeletion="{ deleteGroup }">
-        <button @click="deleteGroup">x</button>
+        <el-button
+          @click="deleteGroup"
+          type="danger"
+          icon="el-icon-close"
+          size="mini"
+          circle
+        ></el-button>
       </template>
       <template #fieldUpdation="{ fieldNames, condition, updateField }">
         <select
