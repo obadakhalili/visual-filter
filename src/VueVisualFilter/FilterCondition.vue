@@ -63,7 +63,7 @@ export default {
       :nominalMethodNames="isNumeric === false && nominalMethodNames"
       :condition="condition"
     >
-      <select v-model="condition">
+      <select v-model="condition.method">
         <option
           v-for="method in isNumeric ? numericMethodNames : nominalMethodNames"
           :key="method"
