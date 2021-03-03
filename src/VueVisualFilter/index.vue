@@ -32,12 +32,13 @@ export default {
         try {
           return (
             value.data.length &&
-            value.data.every(
-              (field, index, fields) =>
-                typeof field.name === "string" &&
-                typeof field.type === "string" &&
-                field.values.constructor === Array &&
-                (index > 0 ? field.values.length === fields[index - 1].values.length : true)
+            value.data.every((field, index, fields) =>
+              typeof field.name === "string" &&
+              typeof field.type === "string" &&
+              field.values.constructor === Array &&
+              index > 0
+                ? field.values.length === fields[index - 1].values.length
+                : true
             ) &&
             value.methods.numeric &&
             Object.values(value.methods.numeric).every(
@@ -110,9 +111,6 @@ export default {
     updateConditionArgument(condition, newArgumentValue) {
       condition.argument = newArgumentValue
     },
-    updateGroupType(group, newGroupType) {
-      group.groupType = newGroupType
-    },
     addFilter(filters, newFilterType) {
       if (newFilterType === FilterType.GROUP) {
         filters.push({
@@ -163,7 +161,6 @@ export default {
             filterTypes: Object.values(FilterType),
             groupTypes: Object.values(GroupType),
             removable: filter !== this.filter,
-            onUpdateType: this.updateGroupType,
             onAddFilter: this.addFilter,
             onDeleteGroup: this.deleteFilter
           },

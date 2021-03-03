@@ -69,8 +69,8 @@ export default {
       :filtering-options="filteringOptions"
       @filter-update="captureFilterUpdate"
     >
-      <template #groupTypes="{ groupTypes, updateType }">
-        <select @change="updateType($event.target.value)">
+      <template #groupTypes="{ groupTypes, group }">
+        <select v-model="group.groupType">
           <option v-for="type in groupTypes" :key="type" :value="type">
             {{ type }}
           </option>

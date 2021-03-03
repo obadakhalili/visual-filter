@@ -17,7 +17,8 @@ module.exports = {
     {
       files: ["*.vue"],
       rules: {
-        "vue/no-multiple-template-root": "off"
+        "vue/no-multiple-template-root": "off",
+        "vue/no-mutating-props": "off"
       }
     }
   ]
