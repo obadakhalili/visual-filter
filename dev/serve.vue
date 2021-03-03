@@ -24,19 +24,19 @@ export default {
         methods: {
           numeric: {
             "="(cellValue, argument) {
-              return cellValue === argument
+              return cellValue === Number(argument)
             },
             ">"(cellValue, argument) {
-              return cellValue > argument
+              return cellValue > Number(argument)
             },
             ">="(cellValue, argument) {
-              return cellValue >= argument
+              return cellValue >= Number(argument)
             },
             "<"(cellValue, argument) {
-              return cellValue < argument
+              return cellValue < Number(argument)
             },
             "<="(cellValue, argument) {
-              return cellValue <= argument
+              return cellValue <= Number(argument)
             }
           },
           nominal: {
@@ -57,7 +57,7 @@ export default {
   methods: {
     captureFilterUpdate(ctx) {
       // ctx object that contains in-reactive clones of filter, and data objects
-      ctx
+      console.log(ctx)
     }
   }
 }
@@ -71,8 +71,12 @@ export default {
     >
       <template #groupTypes="{ groupTypes, group }">
         <el-select v-model="group.groupType" size="small">
-          <el-option v-for="type in groupTypes" :key="type" :value="type">
-          </el-option>
+          <el-option
+            v-for="type in groupTypes"
+            :key="type"
+            :value="type"
+            class="w-auto"
+          ></el-option>
         </el-select>
       </template>
       <template #filterAddition="{ filterTypes, addFilter }">
@@ -107,33 +111,45 @@ export default {
         ></el-button>
       </template>
       <template #fieldUpdation="{ fieldNames, condition, updateField }">
-        <select
+        <el-select
+          @change="updateField"
           v-model="condition.fieldName"
-          @change="updateField($event.target.value)"
+          size="small"
         >
-          <option v-for="field in fieldNames" :key="field" :value="field">
-            {{ field }}
-          </option>
-        </select>
+          <el-option
+            v-for="name in fieldNames"
+            :key="name"
+            :value="name"
+          ></el-option>
+        </el-select>
       </template>
       <template
         #methodUpdation="{ numericMethodNames, nominalMethodNames, condition }"
       >
-        <select v-model="condition.method">
-          <option
+        <el-select v-model="condition.method" size="small">
+          <el-option
             v-for="method in numericMethodNames || nominalMethodNames"
             :key="method"
             :value="method"
-          >
-            {{ method }}
-          </option>
-        </select>
+          ></el-option>
+        </el-select>
       </template>
       <template #argumentUpdation="{ condition }">
-        <input type="text" v-model="condition.argument" />
+        <el-input
+          v-model="condition.argument"
+          size="mini"
+          placeholder="Input value"
+          class="w-auto"
+        ></el-input>
       </template>
       <template #conditionDeletion="{ deleteCondition }">
-        <button @click="deleteCondition">x</button>
+        <el-button
+          @click="deleteCondition"
+          type="danger"
+          icon="el-icon-close"
+          size="mini"
+          circle
+        ></el-button>
       </template>
     </VueVisualFilter>
   </div>

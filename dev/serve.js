@@ -6,7 +6,8 @@ import {
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
-  ElButton
+  ElButton,
+  ElInput
 } from "element-plus"
 import "element-plus/lib/theme-chalk/index.css"
 import VueVisualFilter from "@/entry.esm"
@@ -19,5 +20,6 @@ app.component(ElDropdown.name, ElDropdown)
 app.component(ElDropdownMenu.name, ElDropdownMenu)
 app.component(ElDropdownItem.name, ElDropdownItem)
 app.component(ElButton.name, ElButton)
+app.component(ElInput.name, ElInput)
 app.use(VueVisualFilter)
 app.mount("#app")
