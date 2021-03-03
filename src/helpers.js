@@ -90,12 +90,13 @@ export function applyFilter(filter, methods, data) {
   const premiseTree = buildPremiseTree(filter)
 
   for (
-    let rowIndex = 0, rowsCount = data[0].values.length;
+    let rowIndex = 0, rowsCount = data[0].values.length, deletionCount = 0;
     rowIndex < rowsCount;
     ++rowIndex
   ) {
     if (shouldntDeleteRow(rowIndex, premiseTree, filter) === false) {
-      data.forEach((field) => field.values.splice(rowIndex, 1))
+      data.forEach((field) => field.values.splice(rowIndex - deletionCount, 1))
+      ++deletionCount
     }
   }
 
