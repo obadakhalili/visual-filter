@@ -25,36 +25,32 @@ export default {
       required: true
     }
   },
-  data() {
-    return { DataType }
+  computed: {
+    isNumeric() {
+      return this.condition.dataType === DataType.NUMERIC
+    }
   },
   methods: {
-    updateField(e) {
-      const newFieldName = e.target.value
-
+    updateField(newFieldName) {
       if (this.fieldNames.includes(newFieldName)) {
         this.$emit("updateField", this.condition, newFieldName)
       }
     },
-    updateMethod(e) {
-      const newMethodName = e.target.value
-
+    updateMethod(newMethodName) {
       if (
-        this.condition.dataType === this.DataType.NUMERIC &&
+        this.condition.dataType === DataType.NUMERIC &&
         this.numericMethodNames.includes(newMethodName)
       ) {
         this.$emit("updateMethod", this.condition, newMethodName)
       } else if (
-        this.condition.dataType === this.DataType.NOMINAL &&
+        this.condition.dataType === DataType.NOMINAL &&
         this.nominalMethodNames.includes(newMethodName)
       ) {
         this.$emit("updateMethod", this.condition, newMethodName)
       }
     },
-    updateArgument(e) {
-      let newArgumentValue = e.target.value
-
-      if (this.condition.dataType === this.DataType.NUMERIC) {
+    updateArgument(newArgumentValue) {
+      if (this.condition.dataType === DataType.NUMERIC) {
         newArgumentValue = Number(newArgumentValue)
 
         if (isNaN(newArgumentValue) === false) {
@@ -70,29 +66,49 @@ export default {
 
 <template>
   <div class="space-x-2">
-    <select @change="updateField">
-      <option
-        v-for="field in fieldNames"
-        :key="field"
-        :value="field"
-        :selected="field === condition.fieldName"
-      >
-        {{ field }}
-      </option>
-    </select>
-    <select @change="updateMethod">
-      <option
-        v-for="method in condition.dataType === DataType.NUMERIC
-          ? numericMethodNames
-          : nominalMethodNames"
-        :key="method"
-        :value="method"
-        :selected="method === condition.method"
-      >
-        {{ method }}
-      </option>
-    </select>
-    <input type="text" @input="updateArgument" :value="condition.argument" />
-    <button @click="$emit('deleteCondition', condition)">x</button>
+    <slot
+      name="fieldUpdation"
+      :fieldNames="fieldNames"
+      :updateField="updateField"
+    >
+      <select @change="updateField($event.target.value)">
+        <option v-for="field in fieldNames" :key="field" :value="field">
+          {{ field }}
+        </option>
+      </select>
+    </slot>
+    <slot
+      name="methodUpdation"
+      :numericMethodNames="isNumeric && numericMethodNames"
+      :nominalMethodNames="isNumeric === false && nominalMethodNames"
+      :updateMethod="updateMethod"
+    >
+      <select @change="updateMethod($event.target.value)">
+        <option
+          v-for="method in isNumeric ? numericMethodNames : nominalMethodNames"
+          :key="method"
+          :value="method"
+        >
+          {{ method }}
+        </option>
+      </select>
+    </slot>
+    <slot
+      name="argumentUpdation"
+      :argument="condition.argument"
+      :updateArgument="updateArgument"
+    >
+      <input
+        type="text"
+        @input="updateArgument($event.target.value)"
+        :value="condition.argument"
+      />
+    </slot>
+    <slot
+      name="conditionDeletion"
+      :deleteCondition="() => $emit('deleteCondition', condition)"
+    >
+      <button @click="$emit('deleteCondition', condition)">x</button>
+    </slot>
   </div>
 </template>
