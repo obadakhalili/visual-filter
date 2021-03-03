@@ -97,19 +97,12 @@ export default {
       } = this.filteringOptions.data.find(
         (field) => field.name === newFieldName
       )
-      condition.fieldName = newFieldName
       condition.dataType = type
       condition.method =
         type === DataType.NUMERIC
           ? this.numericMethodNames[0]
           : this.nominalMethodNames[0]
       condition.argument = sampleValue
-    },
-    updateConditionMethod(condition, newMethodName) {
-      condition.method = newMethodName
-    },
-    updateConditionArgument(condition, newArgumentValue) {
-      condition.argument = newArgumentValue
     },
     addFilter(filters, newFilterType) {
       if (newFilterType === FilterType.GROUP) {
@@ -180,8 +173,6 @@ export default {
             numericMethodNames: this.numericMethodNames,
             nominalMethodNames: this.nominalMethodNames,
             onUpdateField: this.updateConditionField,
-            onUpdateMethod: this.updateConditionMethod,
-            onUpdateArgument: this.updateConditionArgument,
             onDeleteCondition: this.deleteFilter
           },
           {

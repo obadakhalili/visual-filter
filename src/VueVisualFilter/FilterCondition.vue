@@ -3,7 +3,7 @@ import { DataType } from "./index.vue"
 
 export default {
   name: "FilterCondition",
-  emits: ["updateField", "updateMethod", "updateArgument", "deleteCondition"],
+  emits: ["updateField", "deleteCondition"],
   props: {
     condition: {
       type: Object,
@@ -35,30 +35,6 @@ export default {
       if (this.fieldNames.includes(newFieldName)) {
         this.$emit("updateField", this.condition, newFieldName)
       }
-    },
-    updateMethod(newMethodName) {
-      if (
-        this.condition.dataType === DataType.NUMERIC &&
-        this.numericMethodNames.includes(newMethodName)
-      ) {
-        this.$emit("updateMethod", this.condition, newMethodName)
-      } else if (
-        this.condition.dataType === DataType.NOMINAL &&
-        this.nominalMethodNames.includes(newMethodName)
-      ) {
-        this.$emit("updateMethod", this.condition, newMethodName)
-      }
-    },
-    updateArgument(newArgumentValue) {
-      if (this.condition.dataType === DataType.NUMERIC) {
-        newArgumentValue = Number(newArgumentValue)
-
-        if (isNaN(newArgumentValue) === false) {
-          this.$emit("updateArgument", this.condition, newArgumentValue)
-        }
-      } else {
-        this.$emit("updateArgument", this.condition, newArgumentValue)
-      }
     }
   }
 }
@@ -69,9 +45,13 @@ export default {
     <slot
       name="fieldUpdation"
       :fieldNames="fieldNames"
+      :condition="condition"
       :updateField="updateField"
     >
-      <select @change="updateField($event.target.value)">
+      <select
+        v-model="condition.fieldName"
+        @change="updateField($event.target.value)"
+      >
         <option v-for="field in fieldNames" :key="field" :value="field">
           {{ field }}
         </option>
@@ -81,9 +61,9 @@ export default {
       name="methodUpdation"
       :numericMethodNames="isNumeric && numericMethodNames"
       :nominalMethodNames="isNumeric === false && nominalMethodNames"
-      :updateMethod="updateMethod"
+      :condition="condition"
     >
-      <select @change="updateMethod($event.target.value)">
+      <select v-model="condition">
         <option
           v-for="method in isNumeric ? numericMethodNames : nominalMethodNames"
           :key="method"
@@ -93,16 +73,8 @@ export default {
         </option>
       </select>
     </slot>
-    <slot
-      name="argumentUpdation"
-      :argument="condition.argument"
-      :updateArgument="updateArgument"
-    >
-      <input
-        type="text"
-        @input="updateArgument($event.target.value)"
-        :value="condition.argument"
-      />
+    <slot name="argumentUpdation" :condition="condition">
+      <input type="text" v-model="condition.argument" />
     </slot>
     <slot
       name="conditionDeletion"

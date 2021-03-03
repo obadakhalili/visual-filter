@@ -86,17 +86,20 @@ export default {
       <template #groupDeletion="{ deleteGroup }">
         <button @click="deleteGroup">x</button>
       </template>
-      <template #fieldUpdation="{ fieldNames, updateField }">
-        <select @change="updateField($event.target.value)">
+      <template #fieldUpdation="{ fieldNames, condition, updateField }">
+        <select
+          v-model="condition.fieldName"
+          @change="updateField($event.target.value)"
+        >
           <option v-for="field in fieldNames" :key="field" :value="field">
             {{ field }}
           </option>
         </select>
       </template>
       <template
-        #methodUpdation="{ numericMethodNames, nominalMethodNames, updateMethod }"
+        #methodUpdation="{ numericMethodNames, nominalMethodNames, condition }"
       >
-        <select @change="updateMethod($event.target.value)">
+        <select v-model="condition.method">
           <option
             v-for="method in numericMethodNames || nominalMethodNames"
             :key="method"
@@ -106,12 +109,8 @@ export default {
           </option>
         </select>
       </template>
-      <template #argumentUpdation="{ argument, updateArgument }">
-        <input
-          type="text"
-          @input="updateArgument($event.target.value)"
-          :value="argument"
-        />
+      <template #argumentUpdation="{ condition }">
+        <input type="text" v-model="condition.argument" />
       </template>
       <template #conditionDeletion="{ deleteCondition }">
         <button @click="deleteCondition">x</button>
