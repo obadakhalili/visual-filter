@@ -94,7 +94,7 @@ export default {
   <div id="app">
     <el-row>
       <el-col :span="15">
-        <VueVisualFilter
+        <vue-visual-filter
           v-if="filteringOptions"
           :filtering-options="filteringOptions"
           @filter-update="captureFilterUpdate"
@@ -198,7 +198,7 @@ export default {
               circle
             ></el-button>
           </template>
-        </VueVisualFilter>
+        </vue-visual-filter>
       </el-col>
       <el-col :span="9">
         <el-table :data="users" stripe>
