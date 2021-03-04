@@ -92,17 +92,19 @@ export default {
   methods: {
     updateConditionField(condition, newFieldName) {
       const {
-        type,
-        values: [sampleValue]
+        type: newType,
+        values: [newSampleValue]
       } = this.filteringOptions.data.find(
         (field) => field.name === newFieldName
       )
-      condition.dataType = type
-      condition.method =
-        type === DataType.NUMERIC
-          ? this.numericMethodNames[0]
-          : this.nominalMethodNames[0]
-      condition.argument = sampleValue
+      if (condition.dataType !== newType) {
+        condition.method =
+          newType === DataType.NUMERIC
+            ? this.numericMethodNames[0]
+            : this.nominalMethodNames[0]
+        condition.argument = newSampleValue
+        condition.dataType = newType
+      }
     },
     addFilter(filters, newFilterType) {
       if (newFilterType === FilterType.GROUP) {
