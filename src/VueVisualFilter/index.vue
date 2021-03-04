@@ -115,7 +115,7 @@ export default {
         const {
           name,
           type,
-          values: [sampleValue]
+          values: [sampleValue = ""]
         } = this.filteringOptions.data[0]
 
         filters.push({
