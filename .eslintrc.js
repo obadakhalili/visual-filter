@@ -12,6 +12,9 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: "module"
   },
+  rules: {
+    "no-unused-vars": ["error", { argsIgnorePattern: "^_" }]
+  },
   plugins: ["vue"],
   overrides: [
     {
