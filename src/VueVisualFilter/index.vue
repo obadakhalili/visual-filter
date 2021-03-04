@@ -93,7 +93,7 @@ export default {
     updateConditionField(condition, newFieldName) {
       const {
         type: newType,
-        values: [newSampleValue]
+        values: [newSampleValue = ""]
       } = this.filteringOptions.data.find(
         (field) => field.name === newFieldName
       )
