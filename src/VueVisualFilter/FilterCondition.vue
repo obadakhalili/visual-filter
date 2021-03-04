@@ -42,12 +42,7 @@ export default {
 
 <template>
   <div class="space-x-2">
-    <slot
-      name="fieldUpdation"
-      :fieldNames="fieldNames"
-      :condition="condition"
-      :updateField="updateField"
-    >
+    <slot name="fieldUpdation" v-bind="{ fieldNames, condition, updateField }">
       <select
         v-model="condition.fieldName"
         @change="updateField($event.target.value)"
@@ -59,9 +54,11 @@ export default {
     </slot>
     <slot
       name="methodUpdation"
-      :numericMethodNames="isNumeric && numericMethodNames"
-      :nominalMethodNames="isNumeric === false && nominalMethodNames"
-      :condition="condition"
+      v-bind="{
+        numericMethodNames: isNumeric && numericMethodNames,
+        nominalMethodNames: isNumeric || nominalMethodNames,
+        condition
+      }"
     >
       <select v-model="condition.method">
         <option
