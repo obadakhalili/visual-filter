@@ -149,7 +149,7 @@ export default {
         <el-input
           v-model="condition.argument"
           size="mini"
-          placeholder="Input value"
+          placeholder="Argument"
           class="w-auto"
         ></el-input>
       </template>
