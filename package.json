@@ -17,7 +17,7 @@
     "filtering"
   ],
   "main": "dist/vue-visual-filter.cjs.js",
-  "browser": "dist/vue-visual-filter.esm.js",
+  "browser": "dist/vue-visual-filter.cjs.js",
   "module": "dist/vue-visual-filter.esm.js",
   "unpkg": "dist/vue-visual-filter.min.js",
   "files": [
