@@ -36,18 +36,14 @@ export default {
 <template>
   <div class="space-y-4">
     <div class="space-x-2">
-      <slot name="groupTypes" :groupTypes="groupTypes" :group="group">
+      <slot name="groupTypes" v-bind="{ groupTypes, group }">
         <select v-model="group.groupType">
           <option v-for="type in groupTypes" :key="type" :value="type">
             {{ type }}
           </option>
         </select>
       </slot>
-      <slot
-        name="filterAddition"
-        :filterTypes="filterTypes"
-        :addFilter="addFilter"
-      >
+      <slot name="filterAddition" v-bind="{ filterTypes, addFilter }">
         <select @change="addFilter($event.target.value)">
           <option v-for="type in filterTypes" :key="type" :value="type">
             {{ type }}
