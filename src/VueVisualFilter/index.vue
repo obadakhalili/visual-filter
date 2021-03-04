@@ -32,15 +32,15 @@ export default {
         try {
           return (
             value.data.length &&
-            value.data.every((field, index, fields) =>
-              typeof field.name === "string" &&
-              typeof field.type === "string" &&
-              field.values.constructor === Array &&
-              index > 0
-                ? field.values.length === fields[index - 1].values.length
-                : true
+            value.data.every(
+              (field, index, fields) =>
+                typeof field.name === "string" &&
+                typeof field.type === "string" &&
+                field.values.constructor === Array &&
+                (index > 0
+                  ? field.values.length === fields[index - 1].values.length
+                  : true)
             ) &&
-            value.methods.numeric &&
             Object.values(value.methods.numeric).every(
               (method) => typeof method === "function"
             ) &&
