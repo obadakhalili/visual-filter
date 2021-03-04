@@ -31,7 +31,10 @@
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:cjs": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "prepare": "npm run build",
+    "version": "npm run lint && git add src",
+    "postversion": "git push origin main && git push origin main --tags"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
