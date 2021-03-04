@@ -5,7 +5,7 @@ export default (() => {
   const installable = component
 
   installable.install = (app) => {
-    app.component("VueVisualFilter", installable)
+    app.component(component.name, installable)
   }
   return installable
 })()

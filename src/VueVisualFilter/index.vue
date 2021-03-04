@@ -22,7 +22,7 @@ export const DataType = createEnum({
 })
 
 export default {
-  name: "VisualFilter",
+  name: "VueVisualFilter",
   emits: ["filterUpdate"],
   props: {
     filteringOptions: {
