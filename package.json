@@ -2,6 +2,20 @@
   "name": "vue-visual-filter",
   "version": "0.8.0",
   "description": "An unopinionated Vue visual filtering component",
+  "author": "Obada Khalili",
+  "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obadakhalili/vue-visual-filter.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "component",
+    "lib",
+    "visual",
+    "filtering"
+  ],
   "main": "dist/vue-visual-filter.cjs.js",
   "browser": "dist/vue-visual-filter.esm.js",
   "module": "dist/vue-visual-filter.esm.js",
