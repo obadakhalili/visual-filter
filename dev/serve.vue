@@ -129,6 +129,7 @@ export default {
         <el-select
           v-if="numericMethodNames"
           v-model="condition.method"
+          no-data-text="No methods"
           size="small"
         >
           <el-option
@@ -137,7 +138,12 @@ export default {
             :value="method"
           ></el-option>
         </el-select>
-        <el-select v-else v-model="condition.method" size="small">
+        <el-select
+          v-else
+          v-model="condition.method"
+          no-data-text="No methods"
+          size="small"
+        >
           <el-option
             v-for="method in nominalMethodNames"
             :key="method"

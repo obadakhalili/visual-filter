@@ -99,9 +99,9 @@ export default {
       )
       if (condition.dataType !== newType) {
         condition.method =
-          newType === DataType.NUMERIC
+          (newType === DataType.NUMERIC
             ? this.numericMethodNames[0]
-            : this.nominalMethodNames[0]
+            : this.nominalMethodNames[0]) || ""
         condition.argument = newSampleValue
         condition.dataType = newType
       }
@@ -125,9 +125,9 @@ export default {
           fieldName: name,
           dataType: type,
           method:
-            type === DataType.NUMERIC
+            (type === DataType.NUMERIC
               ? this.numericMethodNames[0]
-              : this.nominalMethodNames[0],
+              : this.nominalMethodNames[0]) || "",
           argument: sampleValue
         })
       }
