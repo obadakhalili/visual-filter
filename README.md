@@ -10,7 +10,7 @@ An unopinionated Vue visual filtering component. It's built with customizability
 
 [![gif-demo.gif](https://s4.gifyu.com/images/gif-demo.gif)](https://gifyu.com/image/ZowU)
 
-- You can find a complete code example in the [dev dir](https://github.com/obadakhalili/vue-visual-filter/tree/main/dev), within this repo.
+- You can find a complete code example in the [dev dir](https://github.com/obadakhalili/vue-visual-filter/tree/main/dev), within the library repo.
 
 # Prerequisites
 
@@ -80,10 +80,10 @@ Once you're set up, and ready to start using the component. Reference the compon
 
 ```vue
 <template>
-  <h1
+  <vue-visual-filter
     :filtering-options="filteringOptions"
     @filter-update="captureFilterUpdate"
-  ></h1>
+  ></vue-visual-filter>
 </template>
 ```
 
