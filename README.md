@@ -8,7 +8,7 @@ An unopinionated Vue visual filtering component. It's built with customizability
 
 <br>
 
-[![gif-demo.gif](https://s4.gifyu.com/images/gif-demo.gif)](https://gifyu.com/image/ZowU)
+[![demo-gif.gif](https://s4.gifyu.com/images/demo-gif.gif)](https://gifyu.com/image/Z18P)
 
 - You can find a complete code example in the [dev dir](https://github.com/obadakhalili/vue-visual-filter/tree/main/dev), within the library repo.
 
@@ -28,15 +28,13 @@ npm install vue-visual-filter
 ```
 
 ```js
+// JS
 import VueVisualFilter from "vue-visual-filter";
-import "vue-visual-filter/dist/styles.css";
-```
-
-ESM/IIFE distros
-
-```js
+// OR ESM distro
 import VueVisualFilter from "vue-visual-filter/dist/vue-visual-filter.esm.js";
-import VueVisualFilter from "vue-visual-filter/dist/vue-visual-filter.min.js";
+
+// CSS
+import "vue-visual-filter/dist/styles.css";
 ```
 
 - For CDN users:
@@ -91,7 +89,7 @@ Once you're set up, and ready to start using the component. Reference the compon
 
 It contains two options:
 
-- `data`: An array of objects that stores the data to be filtered. Format:
+- `data`: An array of objects that stores the data to be filtered. Definition:
 
 ```ts
 interface Data {
@@ -101,7 +99,7 @@ interface Data {
 }[];
 ```
 
-- `methods`: An object that contains the methods to be used to filter the data. Format:
+- `methods`: An object that contains the methods to be used to filter the data. Definition:
 
 ```ts
 interface Methods {
@@ -133,7 +131,7 @@ Example:
           v-for="type in groupTypes"
           :key="type"
           :value="type"
-          class="w-auto"
+          :style="{ width: 'auto' }"
         ></el-option>
       </el-select>
     </template>
