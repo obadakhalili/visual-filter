@@ -5,7 +5,10 @@ An unopinionated Vue visual filtering component. It's built with customizability
 # Demo and Code Example
 
 - GIF.
-  [![gif-demo.gif](https://s4.gifyu.com/images/gif-demo.gif)](https://gifyu.com/image/ZowU)
+
+<br>
+
+[![gif-demo.gif](https://s4.gifyu.com/images/gif-demo.gif)](https://gifyu.com/image/ZowU)
 
 - You can find a complete code example in the [dev dir](https://github.com/obadakhalili/vue-visual-filter/tree/main/dev), within this repo.
 
