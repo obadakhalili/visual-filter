@@ -237,3 +237,11 @@ Example:
 ```
 
 The example above uses the [element-plus](http://element-plus.org/) UI framework for the filter components. But you can provide whichever content fits your need best.
+
+# TODOs
+
+[] Integrate unit testing.
+[] Provide Vue 2 support.
+[] Rewrite using the composition API
+[] Rewrite using TypeScript.
+[] Rewrite the filter applying algorithm.
