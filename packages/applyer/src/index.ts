@@ -1,8 +1,8 @@
-import common from "@visual-filter/common"
+import { FilterType, GroupType } from "@visual-filter/common"
 
 export = function applyFilter(filter: any, methods: any, data: any) {
   function buildPremiseTree(filter: any) {
-    if (filter.type === common.FilterType.CONDITION) {
+    if (filter.type === FilterType.CONDITION) {
       return data
         .find((field: any) => field.name === filter.fieldName)
         .values.map((value: any) => {
@@ -36,35 +36,35 @@ export = function applyFilter(filter: any, methods: any, data: any) {
 
       if (currentPremise === true) {
         switch (group.groupType) {
-          case common.GroupType.AND:
+          case GroupType.AND:
             continue
-          case common.GroupType.NOT_AND:
+          case GroupType.NOT_AND:
             return false
-          case common.GroupType.OR:
+          case GroupType.OR:
             return true
-          case common.GroupType.NOT_OR:
+          case GroupType.NOT_OR:
             continue
         }
       } else {
-        switch (group.common.GroupType) {
-          case common.GroupType.AND:
+        switch (group.GroupType) {
+          case GroupType.AND:
             return false
-          case common.GroupType.NOT_AND:
+          case GroupType.NOT_AND:
             continue
-          case common.GroupType.OR:
+          case GroupType.OR:
             continue
-          case common.GroupType.NOT_OR:
+          case GroupType.NOT_OR:
             return true
         }
       }
     }
 
-    switch (group.common.GroupType) {
-      case common.GroupType.AND:
-      case common.GroupType.NOT_AND:
+    switch (group.GroupType) {
+      case GroupType.AND:
+      case GroupType.NOT_AND:
         return true
-      case common.GroupType.OR:
-      case common.GroupType.NOT_OR:
+      case GroupType.OR:
+      case GroupType.NOT_OR:
         return false
     }
   }

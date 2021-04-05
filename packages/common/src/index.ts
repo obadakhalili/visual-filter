@@ -1,21 +1,21 @@
-enum FilterType {
+export enum FilterType {
   GROUP = "group",
   CONDITION = "condition",
 }
 
-enum GroupType {
+export enum GroupType {
   AND = "and",
   NOT_AND = "not and",
   OR = "or",
   NOT_OR = "not or",
 }
 
-enum DataType {
+export enum DataType {
   NUMERIC = "numeric",
   NOMINAL = "nominal",
 }
 
-function deepCopy(src: any): any {
+export function deepCopy(src: any): any {
   if (Object(src) !== src) {
     return src
   }
@@ -26,11 +26,4 @@ function deepCopy(src: any): any {
     )
   }
   return src.map(deepCopy)
-}
-
-export default {
-  FilterType,
-  GroupType,
-  DataType,
-  deepCopy,
 }
