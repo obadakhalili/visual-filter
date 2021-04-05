@@ -1,75 +1,13 @@
 {
-  "name": "vue-visual-filter",
-  "version": "0.8.6",
-  "description": "An unopinionated Vue visual filtering component",
-  "author": "Obada Khalili",
-  "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/obadakhalili/vue-visual-filter.git"
-  },
-  "license": "MIT",
-  "keywords": [
-    "vue",
-    "component",
-    "lib",
-    "visual",
-    "filtering"
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "main": "dist/vue-visual-filter.cjs.js",
-  "browser": "dist/vue-visual-filter.cjs.js",
-  "module": "dist/vue-visual-filter.esm.js",
-  "unpkg": "dist/vue-visual-filter.min.js",
-  "files": [
-    "dist/*",
-    "src/**/*.vue"
-  ],
-  "sideEffects": false,
   "scripts": {
-    "serve": "vue-cli-service serve dev/serve.js",
-    "lint": "eslint '*/**/*.{vue,js}' --quiet --fix",
-    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
-    "build:cjs": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
-    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "prepare": "npm run build",
-    "version": "npm run lint && git add .",
-    "postversion": "git push origin main && git push origin main --tags"
+    "format": "yarn run prettier --ignore-path .gitignore --write ."
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@rollup/plugin-alias": "^3.1.1",
-    "@rollup/plugin-babel": "^5.2.2",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.1",
-    "@rollup/plugin-replace": "^2.3.4",
-    "@tailwindcss/postcss7-compat": "^2.0.3",
-    "@vue/cli-plugin-babel": "^4.5.10",
-    "@vue/cli-service": "^4.5.10",
-    "@vue/compiler-sfc": "^3.0.5",
-    "autoprefixer": "^9.8.6",
-    "cross-env": "^7.0.3",
-    "element-plus": "^1.0.2-beta.33",
-    "eslint": "^7.21.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-vue": "^7.6.0",
-    "minimist": "^1.2.5",
-    "postcss": "^7.0.35",
-    "postcss-csso": "^4.0.0",
-    "prettier": "^1.19.1",
-    "rollup": "^2.36.1",
-    "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-vue": "^6.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
-    "vue": "^3.0.5"
-  },
-  "peerDependencies": {
-    "vue": "^3.0.5"
-  },
-  "engines": {
-    "node": ">=12"
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
   }
 }

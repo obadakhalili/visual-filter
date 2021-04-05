@@ -1,29 +1,20 @@
 <script>
-import { h } from "vue"
+import {
+  FilterType,
+  GroupType,
+  DataType,
+  deepCopy,
+} from "@visual-filter/common"
+import applyFilter from "@visual-filter/applyer"
+
 import FilterGroup from "./FilterGroup.vue"
 import FilterCondition from "./FilterCondition.vue"
-import { createEnum, deepCopy, applyFilter } from "@/helpers.js"
 
-export const FilterType = createEnum({
-  GROUP: "group",
-  CONDITION: "condition"
-})
-
-export const GroupType = createEnum({
-  AND: "and",
-  NOT_AND: "not and",
-  OR: "or",
-  NOT_OR: "not or"
-})
-
-export const DataType = createEnum({
-  NUMERIC: "numeric",
-  NOMINAL: "nominal"
-})
+const filterTypes = Object.values(FilterType)
+const groupTypes = Object.values(GroupType)
 
 export default {
   name: "VueVisualFilter",
-  emits: ["filterUpdate"],
   props: {
     filteringOptions: {
       type: Object,
@@ -39,28 +30,28 @@ export default {
                 field.values.constructor === Array &&
                 (index > 0
                   ? field.values.length === fields[index - 1].values.length
-                  : true)
+                  : true),
             ) &&
             Object.values(value.methods.numeric).every(
-              (method) => typeof method === "function"
+              (method) => typeof method === "function",
             ) &&
             Object.values(value.methods.nominal).every(
-              (method) => typeof method === "function"
+              (method) => typeof method === "function",
             )
           )
         } catch {
           return false
         }
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       filter: {
         type: FilterType.GROUP,
         groupType: GroupType.AND,
-        filters: []
-      }
+        filters: [],
+      },
     }
   },
   computed: {
@@ -72,30 +63,32 @@ export default {
     },
     nominalMethodNames() {
       return Object.keys(this.filteringOptions.methods.nominal)
-    }
+    },
   },
   watch: {
     filter: {
       deep: true,
       handler() {
-        this.$emit("filterUpdate", {
-          filter: deepCopy(this.filter),
-          data: applyFilter(
-            this.filter,
-            this.filteringOptions.methods,
-            deepCopy(this.filteringOptions.data)
-          )
-        })
-      }
-    }
+        if (this.$listeners["filter-update"]) {
+          this.$emit("filter-update", {
+            filter: deepCopy(this.filter),
+            data: applyFilter(
+              this.filter,
+              this.filteringOptions.methods,
+              deepCopy(this.filteringOptions.data),
+            ),
+          })
+        }
+      },
+    },
   },
   methods: {
     updateConditionField(condition, newFieldName) {
       const {
         type: newType,
-        values: [newSampleValue = ""]
+        values: [newSampleValue = ""],
       } = this.filteringOptions.data.find(
-        (field) => field.name === newFieldName
+        (field) => field.name === newFieldName,
       )
       if (condition.dataType !== newType) {
         condition.method =
@@ -111,13 +104,13 @@ export default {
         filters.push({
           type: FilterType.GROUP,
           groupType: GroupType.AND,
-          filters: []
+          filters: [],
         })
       } else {
         const {
           name,
           type,
-          values: [sampleValue = ""]
+          values: [sampleValue = ""],
         } = this.filteringOptions.data[0]
 
         filters.push({
@@ -128,66 +121,70 @@ export default {
             (type === DataType.NUMERIC
               ? this.numericMethodNames[0]
               : this.nominalMethodNames[0]) || "",
-          argument: sampleValue
+          argument: sampleValue,
         })
       }
     },
-    deleteFilter(filterToDelete) {
-      function recursiveDeletion(filter, index, filters) {
-        if (filter === filterToDelete) {
-          filters.splice(index, 1)
-        } else if (filter.type === FilterType.GROUP) {
-          filter.filters.map(recursiveDeletion)
-        }
-      }
-
-      if (filterToDelete !== this.filter) {
-        recursiveDeletion(this.filter)
-      }
-    }
+    deleteFilter(filterIndex, parentGroup) {
+      parentGroup.splice(filterIndex, 1)
+    },
   },
-  render() {
-    const createVisualizer = (filter) => {
+  render(createElement) {
+    return createVisualFilter.call(this, this.filter)
+
+    function createVisualFilter(filter, filterIndex, parentGroup) {
       if (filter.type === FilterType.GROUP) {
-        return h(
-          FilterGroup,
-          {
+        const removable = filter !== this.filter
+
+        return createElement(FilterGroup, {
+          props: {
             group: filter,
-            filterTypes: Object.values(FilterType),
-            groupTypes: Object.values(GroupType),
-            removable: filter !== this.filter,
-            onAddFilter: this.addFilter,
-            onDeleteGroup: this.deleteFilter
+            filterTypes,
+            groupTypes,
+            removable,
           },
-          {
+          on: {
+            addFilter: this.addFilter,
+            deleteGroup: removable
+              ? () => this.deleteFilter(filterIndex, parentGroup)
+              : () => {},
+          },
+          scopedSlots: {
             groupTypes: this.$slots.groupTypes,
             filterAddition: this.$slots.filterAddition,
             groupDeletion: this.$slots.groupDeletion,
-            groupChildren: () => filter.filters.map(createVisualizer)
-          }
-        )
+            groupChildren: () =>
+              filter.filters.map((childFilter, childFilterIndex, parentGroup) =>
+                createVisualFilter.call(
+                  this,
+                  childFilter,
+                  childFilterIndex,
+                  parentGroup,
+                ),
+              ),
+          },
+        })
       } else {
-        return h(
-          FilterCondition,
-          {
+        return createElement(FilterCondition, {
+          props: {
             condition: filter,
             fieldNames: this.fieldNames,
             numericMethodNames: this.numericMethodNames,
             nominalMethodNames: this.nominalMethodNames,
-            onUpdateField: this.updateConditionField,
-            onDeleteCondition: this.deleteFilter
           },
-          {
+          on: {
+            updateField: this.updateConditionField,
+            deleteCondition: () => this.deleteFilter(filterIndex, parentGroup),
+          },
+          scopedSlots: {
             fieldUpdation: this.$slots.fieldUpdation,
             methodUpdation: this.$slots.methodUpdation,
             argumentUpdation: this.$slots.argumentUpdation,
-            conditionDeletion: this.$slots.conditionDeletion
-          }
-        )
+            conditionDeletion: this.$slots.conditionDeletion,
+          },
+        })
       }
     }
-
-    return createVisualizer(this.filter)
-  }
+  },
 }
 </script>

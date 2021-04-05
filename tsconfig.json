@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "paths": {
+      "@visual-filter/*": ["packages/*/src"]
+    }
+  },
+  "exclude": ["packages/vue2"]
+}

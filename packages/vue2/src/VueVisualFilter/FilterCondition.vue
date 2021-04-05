@@ -1,5 +1,5 @@
 <script>
-import { DataType } from "./index.vue"
+import { DataType } from "@visual-filter/common"
 
 export default {
   name: "FilterCondition",
@@ -10,33 +10,33 @@ export default {
       required: true,
       validator(value) {
         return value.constructor === Object
-      }
+      },
     },
     fieldNames: {
       type: Array,
-      required: true
+      required: true,
     },
     numericMethodNames: {
       type: Array,
-      required: true
+      required: true,
     },
     nominalMethodNames: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     isNumeric() {
       return this.condition.dataType === DataType.NUMERIC
-    }
+    },
   },
   methods: {
     updateField(newFieldName) {
       if (this.fieldNames.includes(newFieldName)) {
         this.$emit("updateField", this.condition, newFieldName)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -57,7 +57,7 @@ export default {
       v-bind="{
         numericMethodNames: isNumeric && numericMethodNames,
         nominalMethodNames: isNumeric || nominalMethodNames,
-        condition
+        condition,
       }"
     >
       <select v-model="condition.method">

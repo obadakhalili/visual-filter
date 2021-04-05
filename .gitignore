@@ -1,4 +1,8 @@
 node_modules
-package-lock.json
-dist
+
+packages/**/node_modules
+packages/**/dist
+
+*.log
+.vscode
 todo.md

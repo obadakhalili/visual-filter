@@ -1,35 +1,34 @@
 <script>
 export default {
   name: "FilterGroup",
-  emits: ["addFilter", "deleteGroup"],
   props: {
     group: {
       type: Object,
       required: true,
       validator(value) {
         return value.constructor === Object
-      }
+      },
     },
     filterTypes: {
       type: Array,
-      required: true
+      required: true,
     },
     groupTypes: {
       type: Array,
-      required: true
+      required: true,
     },
     removable: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     addFilter(newFilterType) {
       if (this.filterTypes.includes(newFilterType)) {
         this.$emit("addFilter", this.group.filters, newFilterType)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -53,9 +52,9 @@ export default {
       <slot
         v-if="removable"
         name="groupDeletion"
-        :deleteGroup="() => $emit('deleteGroup', group)"
+        :deleteGroup="() => $emit('deleteGroup')"
       >
-        <button @click="$emit('deleteGroup', group)">x</button>
+        <button @click="$emit('deleteGroup')">x</button>
       </slot>
     </div>
     <div v-if="group.filters.length" class="ml-10 space-y-1">
