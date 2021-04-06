@@ -1,7 +1,7 @@
 const { defineConfig } = require("vite")
-const { createVuePlugin } = require("vite-plugin-vue2")
+const vue = require("@vitejs/plugin-vue")
 
 module.exports = defineConfig({
   ...require("../../vite.config.js"),
-  plugins: [createVuePlugin()],
+  plugins: [vue()],
 })

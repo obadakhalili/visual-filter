@@ -5,5 +5,5 @@
       "@visual-filter/*": ["packages/*/src"]
     }
   },
-  "exclude": ["packages/vue2"]
+  "exclude": ["packages/vue2", "packages/vue3"]
 }
