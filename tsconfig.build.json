@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "outDir": "dist",
     "target": "ES5",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "module": "CommonJS",
     "esModuleInterop": true,
     "declaration": true,

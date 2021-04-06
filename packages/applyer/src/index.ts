@@ -46,7 +46,7 @@ export = function applyFilter(filter: any, methods: any, data: any) {
             continue
         }
       } else {
-        switch (group.GroupType) {
+        switch (group.groupType) {
           case GroupType.AND:
             return false
           case GroupType.NOT_AND:
@@ -59,7 +59,7 @@ export = function applyFilter(filter: any, methods: any, data: any) {
       }
     }
 
-    switch (group.GroupType) {
+    switch (group.groupType) {
       case GroupType.AND:
       case GroupType.NOT_AND:
         return true
