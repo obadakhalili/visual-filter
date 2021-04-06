@@ -2,14 +2,16 @@
   "name": "@visual-filter/vue2",
   "version": "0.9.0",
   "scripts": {
-    "serve": "vite",
-    "serve:force": "vite --force"
+    "dev": "vite",
+    "dev:rebuild": "vite --force",
+    "format": "yarn run prettier --ignore-path ../../.gitignore --write"
   },
   "dependencies": {
     "@visual-filter/applyer": "0.9.0",
     "@visual-filter/common": "0.9.0"
   },
   "devDependencies": {
+    "prettier": "^2.2.1",
     "vite": "^2.1.5",
     "vite-plugin-vue2": "^1.4.3",
     "vue": "^2.6.12"

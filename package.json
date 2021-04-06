@@ -4,7 +4,8 @@
     "packages/*"
   ],
   "scripts": {
-    "format": "yarn run prettier --ignore-path .gitignore --write ."
+    "format": "yarn run prettier --write .",
+    "format:all": "yarn run prettier --ignore-path .gitignore --write ."
   },
   "devDependencies": {
     "postcss": "^8.2.9",
