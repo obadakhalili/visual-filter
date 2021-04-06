@@ -5,5 +5,6 @@ module.exports = {
     require("tailwindcss")({
       config: path.resolve("../../tailwind.config.js"),
     }),
+    require("autoprefixer"),
   ],
 }
