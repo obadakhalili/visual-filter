@@ -11,7 +11,7 @@
     "dev": "yarn build --watch",
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
     "build": "tsc --project tsconfig.build.json",
-    "clean": "rm -rf"
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "prettier": "^2.2.1",

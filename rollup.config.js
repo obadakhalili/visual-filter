@@ -1,19 +1,15 @@
-const alias = require("@rollup/plugin-alias")
-const { nodeResolve } = require("@rollup/plugin-node-resolve")
-const commonjs = require("@rollup/plugin-commonjs")
 const ignoreImport = require("rollup-plugin-ignore-import")
 const { babel } = require("@rollup/plugin-babel")
 const { terser } = require("rollup-plugin-terser")
+const { nodeResolve } = require("@rollup/plugin-node-resolve")
+const commonjs = require("@rollup/plugin-commonjs")
 const postcss = require("rollup-plugin-postcss")
 
-const path = require("path")
-
-const sharedConfig = { input: "src/main.js" }
-const buildsConfig = []
-
-Object.assign(sharedConfig, {
+const sharedConfig = {
+  input: "src/main.js",
   external: ["@visual-filter/common", "@visual-filter/applyer"],
-})
+}
+const buildsConfig = []
 
 if (process.env.package.startsWith("vue")) {
   sharedConfig.external.push("vue")
@@ -32,9 +28,6 @@ if (process.env.package.startsWith("vue")) {
 }
 
 sharedConfig.plugins.push(
-  alias({
-    entries: [{ find: "@", replacement: path.resolve("src") }],
-  }),
   ignoreImport({
     extensions: [".css"],
   }),
