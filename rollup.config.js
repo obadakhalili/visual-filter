@@ -33,15 +33,8 @@ sharedConfig.plugins.push(
   }),
   babel({
     babelHelpers: "bundled",
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
-    presets: [
-      [
-        "@babel/preset-env",
-        {
-          targets: ["current node", "last 2 versions and > 2%", "ie > 10"],
-        },
-      ],
-    ],
+    extensions: [".js", ".vue", ".ts", ".tsx"],
+    configFile: "../../babel.config.js",
   }),
   terser(),
 )
