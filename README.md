@@ -238,10 +238,13 @@ Example:
 
 The example above uses the [element-plus](http://element-plus.org/) UI framework for the filter components. But you can provide whichever content fits your need best.
 
-# TODOs
+# To-do's
 
-- [ ] Integrate unit testing.
-- [ ] Provide Vue 2 support.
-- [ ] Rewrite using the composition API
-- [ ] Rewrite using TypeScript.
-- [ ] Rewrite the filter applying algorithm.
+- [@visual-filter/vue3](https://github.com/obadakhalili/vue-visual-filter/tree/dev/packages/vue3).
+- [@visual-filter/vue2](https://github.com/obadakhalili/vue-visual-filter/tree/dev/packages/vue2).
+- @visual-filter/react. **TBW**.
+- [@visual-filter/applyer](https://github.com/obadakhalili/vue-visual-filter/tree/dev/packages/applyer).
+- Write the above using TypeScript (except @visual-filter/vue2), and integrate unit testing into the code **WIP**.
+
+**You can trace the work being done to the above goals in the [dev](https://github.com/obadakhalili/vue-visual-filter/tree/dev) branch**.
+
