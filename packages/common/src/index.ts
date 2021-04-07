@@ -16,14 +16,14 @@ export enum DataType {
 }
 
 export function deepCopy(src: any): any {
-  if (Object(src) !== src) {
-    return src
-  }
   if (src.constructor === Object) {
     return Object.entries(src).reduce(
       (objCopy, [key, value]) => ({ ...objCopy, [key]: deepCopy(value) }),
       {},
     )
   }
-  return src.map(deepCopy)
+  if (src.constructor === Array) {
+    return src.map(deepCopy)
+  }
+  return src.valueOf()
 }
