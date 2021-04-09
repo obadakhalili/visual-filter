@@ -1,7 +1,7 @@
 module.exports = {
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(js)$",
   transform: {
-    "\\.ts": "ts-jest",
-    "\\.vue": "vue-jest",
-    "\\.js": "babel-jest",
+    "\\.js$": "babel-jest",
+    "\\.vue$": "vue-jest",
   },
 }
