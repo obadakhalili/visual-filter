@@ -1,4 +1,3 @@
-import "regenerator-runtime"
 import { mount } from "@vue/test-utils"
 
 import FilterCondition from "../src/VueVisualFilter/FilterCondition.vue"
@@ -15,11 +14,11 @@ const propsData = {
   nominalMethodNames: ["contains", "startsWith", "endsWith"],
   numericMethodNames: ["=", ">", "<"],
 }
-const wrapper = mount(FilterCondition, { propsData })
+const wrapper = mount(FilterCondition, { propsData } as any)
 
 describe("field updation logic", () => {
   const selectedIndex = 1
-  const updateFieldSpy = jest.spyOn(wrapper.vm, "updateField")
+  const updateFieldSpy = jest.spyOn(wrapper.vm, "updateField" as any)
 
   beforeAll(async () => {
     await wrapper
@@ -41,9 +40,9 @@ describe("field updation logic", () => {
 
   it("should emit updateField on change event with correct paramaters", () => {
     const emittedEvents = wrapper.emitted()
-    const [params] = emittedEvents.updateField
+    const [params]: any = emittedEvents.updateField
     expect(params).toEqual([
-      wrapper.vm.condition,
+      (wrapper.vm as any).condition,
       propsData.fieldNames[selectedIndex],
     ])
   })
