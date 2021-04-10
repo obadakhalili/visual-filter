@@ -49,10 +49,24 @@ describe("field updation logic", () => {
   })
 })
 
+describe("method updation logic", () => {
+  it("should update modeled property", async () => {
+    const selectedIndex = 1
+    await wrapper
+      .findAll("select")
+      .at(1)
+      .findAll("option")
+      .at(selectedIndex)
+      .setSelected()
+    expect(propsData.condition.method).toBe(
+      propsData.nominalMethodNames[selectedIndex],
+    )
+  })
+})
+
 describe("condition deletion logic", () => {
   it("should emit deleteCondition on click event", async () => {
-    const button = wrapper.find("button")
-    await button.trigger("click")
+    await wrapper.find("button").trigger("click")
     expect(wrapper.emitted()).toHaveProperty("deleteCondition")
   })
 })
