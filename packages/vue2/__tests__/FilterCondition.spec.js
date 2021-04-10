@@ -5,7 +5,7 @@ import FilterCondition from "../src/VueVisualFilter/FilterCondition.vue"
 
 const propsData = {
   condition: {
-    argument: "Obada",
+    argument: "John",
     dataType: "nominal",
     fieldName: "First Name",
     method: "contains",
@@ -61,6 +61,14 @@ describe("method updation logic", () => {
     expect(propsData.condition.method).toBe(
       propsData.nominalMethodNames[selectedIndex],
     )
+  })
+})
+
+describe("argument updation logic", () => {
+  it("should update modeled property", async () => {
+    const newValue = "new value"
+    await wrapper.find("input").setValue(newValue)
+    expect(propsData.condition.argument).toBe(newValue)
   })
 })
 
