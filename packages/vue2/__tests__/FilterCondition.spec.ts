@@ -14,7 +14,7 @@ const propsData = {
   nominalMethodNames: ["contains", "startsWith", "endsWith"],
   numericMethodNames: ["=", ">", "<"],
 }
-const wrapper = mount(FilterCondition, { propsData } as any)
+const wrapper = mount(FilterCondition, { propsData })
 
 describe("field updation logic", () => {
   const selectedIndex = 1
@@ -40,7 +40,7 @@ describe("field updation logic", () => {
 
   it("should emit updateField on change event with correct paramaters", () => {
     const emittedEvents = wrapper.emitted()
-    const [params]: any = emittedEvents.updateField
+    const [params] = emittedEvents.updateField as unknown[][]
     expect(params).toEqual([
       (wrapper.vm as any).condition,
       propsData.fieldNames[selectedIndex],

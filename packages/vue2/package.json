@@ -6,6 +6,7 @@
     "dev:rebuild": "yarn run dev --force",
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
     "test": "jest",
+    "test:watch": "jest --watch",
     "build": "rollup --config ../../rollup.config.js --environment NODE_ENV:production,package:vue2",
     "clean": "rm -rf dist"
   },
