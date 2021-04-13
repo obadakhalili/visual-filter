@@ -1,4 +1,6 @@
 <script>
+import { FilterType, GroupType } from "@visual-filter/common"
+
 export default {
   name: "FilterGroup",
   props: {
@@ -9,18 +11,16 @@ export default {
         return value.constructor === Object
       },
     },
-    filterTypes: {
-      type: Array,
-      required: true,
-    },
-    groupTypes: {
-      type: Array,
-      required: true,
-    },
     removable: {
       type: Boolean,
       required: true,
     },
+  },
+  data() {
+    return {
+      filterTypes: Object.values(FilterType),
+      groupTypes: Object.values(GroupType),
+    }
   },
   methods: {
     addFilter(newFilterType) {

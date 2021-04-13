@@ -10,9 +10,6 @@ import applyFilter from "@visual-filter/applyer"
 import FilterGroup from "./FilterGroup.vue"
 import FilterCondition from "./FilterCondition.vue"
 
-const filterTypes = Object.values(FilterType)
-const groupTypes = Object.values(GroupType)
-
 export default {
   name: "VueVisualFilter",
   props: {
@@ -139,8 +136,6 @@ export default {
         return createElement(FilterGroup, {
           props: {
             group: filter,
-            filterTypes,
-            groupTypes,
             removable,
           },
           on: {
