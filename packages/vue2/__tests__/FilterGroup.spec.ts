@@ -6,16 +6,20 @@ import FilterGroup from "../src/VueVisualFilter/FilterGroup.vue"
 const filterTypes = Object.values(FilterType)
 const groupTypes = Object.values(GroupType)
 
-const propsData = {
-  group: {
-    filters: [],
-    groupType: GroupType.AND,
-    type: FilterType.GROUP,
-  },
-  removable: false,
+function generateProps(isGroupRemovable: boolean | string = false) {
+  return {
+    group: {
+      filters: [],
+      groupType: GroupType.AND,
+      type: FilterType.GROUP,
+    },
+    removable: isGroupRemovable ? true : false,
+  }
 }
+
+const sharedProps = generateProps()
 const wrapper = mount<FilterGroup & { [name: string]: any }>(FilterGroup, {
-  propsData,
+  propsData: sharedProps,
 })
 
 describe("group types logic", () => {
@@ -26,7 +30,7 @@ describe("group types logic", () => {
       .findAll("option")
       .at(selectedGroupIndex)
       .setSelected()
-    expect(propsData.group.groupType).toBe(groupTypes[selectedGroupIndex])
+    expect(sharedProps.group.groupType).toBe(groupTypes[selectedGroupIndex])
   })
 })
 
@@ -51,8 +55,23 @@ describe("filter addition logic", () => {
     const emittedEvents = wrapper.emitted()
     const [params] = emittedEvents.addFilter as unknown[][]
     expect(params).toEqual([
-      propsData.group.filters,
+      sharedProps.group.filters,
       filterTypes[selectedFilterIndex],
     ])
+  })
+})
+
+describe("filter deletion logic", () => {
+  it("shouldn't exit", () => {
+    expect(wrapper.find("button").exists()).toBe(false)
+  })
+
+  it("should exist after re-setting props with isGroupRemovable set to a truthy value", async () => {
+    await wrapper.setProps(generateProps("removableGroup"))
+  })
+
+  it("should emit deleteGroup on click event", async () => {
+    await wrapper.find("button").trigger("click")
+    expect(wrapper.emitted()).toHaveProperty("deleteGroup")
   })
 })
