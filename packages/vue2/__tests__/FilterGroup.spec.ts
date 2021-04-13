@@ -3,8 +3,8 @@ import { FilterType, GroupType } from "@visual-filter/common"
 
 import FilterGroup from "../src/VueVisualFilter/FilterGroup.vue"
 
-const filterTypes = Object.values(FilterType)
-const groupTypes = Object.values(GroupType)
+const availableFilterTypes = Object.values(FilterType)
+const availableGroupTypes = Object.values(GroupType)
 
 function generateProps(isGroupRemovable: boolean | string = false) {
   return {
@@ -30,7 +30,9 @@ describe("group types logic", () => {
       .findAll("option")
       .at(selectedGroupIndex)
       .setSelected()
-    expect(sharedProps.group.groupType).toBe(groupTypes[selectedGroupIndex])
+    expect(sharedProps.group.groupType).toBe(
+      availableGroupTypes[selectedGroupIndex],
+    )
   })
 })
 
@@ -56,7 +58,7 @@ describe("filter addition logic", () => {
     const [params] = emittedEvents.addFilter as unknown[][]
     expect(params).toEqual([
       sharedProps.group.filters,
-      filterTypes[selectedFilterIndex],
+      availableFilterTypes[selectedFilterIndex],
     ])
   })
 })
@@ -73,5 +75,42 @@ describe("filter deletion logic", () => {
   it("should emit deleteGroup on click event", async () => {
     await wrapper.find("button").trigger("click")
     expect(wrapper.emitted()).toHaveProperty("deleteGroup")
+  })
+})
+
+describe("slots", () => {
+  it("should bound correct values to their corresponding slots", () => {
+    const sharedProps = generateProps("removableGroup")
+    const wrapper = mount(FilterGroup, {
+      propsData: sharedProps,
+      scopedSlots: {
+        groupTypes({
+          groupTypes,
+          group,
+        }: {
+          groupTypes: typeof availableGroupTypes
+          group: typeof sharedProps.group
+        }) {
+          expect(groupTypes).toEqual(groupTypes)
+          expect(group).toBe(sharedProps.group)
+        },
+        filterAddition({
+          filterTypes,
+          addFilter,
+        }: {
+          filterTypes: typeof availableFilterTypes
+          addFilter(newFilterType: FilterType): void
+        }) {
+          expect(filterTypes).toEqual(availableFilterTypes)
+          addFilter(FilterType.GROUP)
+        },
+        groupDeletion({ deleteGroup }: { deleteGroup(): void }) {
+          deleteGroup()
+        },
+      },
+    })
+    const emittedEvents = wrapper.emitted()
+    expect(emittedEvents).toHaveProperty("addFilter")
+    expect(emittedEvents).toHaveProperty("deleteGroup")
   })
 })
