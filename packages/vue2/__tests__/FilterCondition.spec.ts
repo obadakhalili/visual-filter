@@ -14,11 +14,14 @@ const propsData = {
   nominalMethodNames: ["contains", "startsWith", "endsWith"],
   numericMethodNames: ["=", ">", "<"],
 }
-const wrapper = mount(FilterCondition, { propsData })
+const wrapper = mount<FilterCondition & { [key: string]: any }>(
+  FilterCondition,
+  { propsData },
+)
 
 describe("field updation logic", () => {
   const selectedIndex = 1
-  const updateFieldSpy = jest.spyOn(wrapper.vm, "updateField" as any)
+  const updateFieldSpy = jest.spyOn(wrapper.vm, "updateField")
 
   beforeAll(async () => {
     await wrapper
@@ -42,7 +45,7 @@ describe("field updation logic", () => {
     const emittedEvents = wrapper.emitted()
     const [params] = emittedEvents.updateField as unknown[][]
     expect(params).toEqual([
-      (wrapper.vm as any).condition,
+      wrapper.vm.condition,
       propsData.fieldNames[selectedIndex],
     ])
   })
