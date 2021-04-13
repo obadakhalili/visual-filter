@@ -24,20 +24,20 @@ const wrapper = mount<FilterCondition & { [key: string]: any }>(
 )
 
 describe("field updation logic", () => {
-  const selectedIndex = 1
+  const selectedFieldNameIndex = 1
   const updateFieldSpy = jest.spyOn(wrapper.vm, "updateField")
 
   beforeAll(async () => {
     await wrapper
       .find("select")
       .findAll("option")
-      .at(selectedIndex)
+      .at(selectedFieldNameIndex)
       .setSelected()
   })
 
   it("should update modeled property", () => {
     expect(sharedProps.condition.fieldName).toBe(
-      sharedProps.fieldNames[selectedIndex],
+      sharedProps.fieldNames[selectedFieldNameIndex],
     )
   })
 
@@ -50,7 +50,7 @@ describe("field updation logic", () => {
     const [params] = emittedEvents.updateField as unknown[][]
     expect(params).toEqual([
       wrapper.vm.condition,
-      sharedProps.fieldNames[selectedIndex],
+      sharedProps.fieldNames[selectedFieldNameIndex],
     ])
   })
 })
