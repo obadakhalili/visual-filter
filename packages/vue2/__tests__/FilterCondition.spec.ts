@@ -144,4 +144,20 @@ describe("slots", () => {
       },
     })
   })
+
+  it("should receive correct bound values from conditionDeletion slot", () => {
+    const wrapper = mount(FilterCondition, {
+      propsData: sharedProps,
+      scopedSlots: {
+        conditionDeletion({
+          deleteCondition,
+        }: {
+          deleteCondition: (condition: typeof sharedProps["condition"]) => void
+        }) {
+          deleteCondition(sharedProps.condition)
+        },
+      },
+    })
+    expect(wrapper.emitted()).toHaveProperty("deleteCondition")
+  })
 })
