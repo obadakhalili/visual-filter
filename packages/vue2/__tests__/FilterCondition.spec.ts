@@ -129,4 +129,19 @@ describe("slots", () => {
       },
     })
   })
+
+  it("should receive correct bound values from argumentUpdation slot", () => {
+    mount(FilterCondition, {
+      propsData: sharedProps,
+      scopedSlots: {
+        argumentUpdation({
+          condition,
+        }: {
+          condition: typeof sharedProps["fieldNames"]
+        }) {
+          expect(condition).toBe(sharedProps.condition)
+        },
+      },
+    })
+  })
 })
