@@ -86,26 +86,47 @@ describe("condition deletion logic", () => {
 })
 
 describe("slots", () => {
+  const sharedProps = generateProps()
   it("should receive correct bound values from fieldUpdation slot", () => {
-    const props = generateProps()
     const wrapper = mount(FilterCondition, {
-      propsData: props,
+      propsData: sharedProps,
       scopedSlots: {
         fieldUpdation({
           condition,
           fieldNames,
           updateField,
         }: {
-          condition: typeof props["condition"]
-          fieldNames: typeof props["fieldNames"]
+          condition: typeof sharedProps["condition"]
+          fieldNames: typeof sharedProps["fieldNames"]
           updateField: (fieldName: string) => void
         }) {
-          expect(condition).toBe(props.condition)
-          expect(fieldNames).toBe(props.fieldNames)
-          updateField(props.fieldNames[0])
+          expect(condition).toBe(sharedProps.condition)
+          expect(fieldNames).toBe(sharedProps.fieldNames)
+          updateField(sharedProps.fieldNames[2])
         },
       },
     })
     expect(wrapper.emitted()).toHaveProperty("updateField")
+  })
+
+  it("should receive correct bound values from methodUpdation slot", () => {
+    mount(FilterCondition, {
+      propsData: sharedProps,
+      scopedSlots: {
+        methodUpdation({
+          numericMethodNames,
+          nominalMethodNames,
+          condition,
+        }: {
+          numericMethodNames: false
+          nominalMethodNames: typeof sharedProps["nominalMethodNames"]
+          condition: typeof sharedProps["fieldNames"]
+        }) {
+          expect(numericMethodNames).toBe(false)
+          expect(nominalMethodNames).toBe(sharedProps.nominalMethodNames)
+          expect(condition).toBe(sharedProps.condition)
+        },
+      },
+    })
   })
 })
