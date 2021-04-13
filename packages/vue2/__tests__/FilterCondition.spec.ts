@@ -2,21 +2,25 @@ import { mount } from "@vue/test-utils"
 
 import FilterCondition from "../src/VueVisualFilter/FilterCondition.vue"
 
-const propsData = {
-  condition: {
-    argument: "John",
-    dataType: "nominal",
-    fieldName: "First Name",
-    method: "contains",
-    type: "condition",
-  },
-  fieldNames: ["First Name", "Last Name", "Grade"],
-  nominalMethodNames: ["contains", "startsWith", "endsWith"],
-  numericMethodNames: ["=", ">", "<"],
+function generateProps() {
+  return {
+    condition: {
+      argument: "John",
+      dataType: "nominal",
+      fieldName: "First Name",
+      method: "contains",
+      type: "condition",
+    },
+    fieldNames: ["First Name", "Last Name", "Grade"],
+    nominalMethodNames: ["contains", "startsWith", "endsWith"],
+    numericMethodNames: ["=", ">", "<"],
+  }
 }
+
+const sharedProps = generateProps()
 const wrapper = mount<FilterCondition & { [key: string]: any }>(
   FilterCondition,
-  { propsData },
+  { propsData: sharedProps },
 )
 
 describe("field updation logic", () => {
@@ -32,8 +36,8 @@ describe("field updation logic", () => {
   })
 
   it("should update modeled property", () => {
-    expect(propsData.condition.fieldName).toBe(
-      propsData.fieldNames[selectedIndex],
+    expect(sharedProps.condition.fieldName).toBe(
+      sharedProps.fieldNames[selectedIndex],
     )
   })
 
@@ -46,7 +50,7 @@ describe("field updation logic", () => {
     const [params] = emittedEvents.updateField as unknown[][]
     expect(params).toEqual([
       wrapper.vm.condition,
-      propsData.fieldNames[selectedIndex],
+      sharedProps.fieldNames[selectedIndex],
     ])
   })
 })
@@ -60,8 +64,8 @@ describe("method updation logic", () => {
       .findAll("option")
       .at(selectedIndex)
       .setSelected()
-    expect(propsData.condition.method).toBe(
-      propsData.nominalMethodNames[selectedIndex],
+    expect(sharedProps.condition.method).toBe(
+      sharedProps.nominalMethodNames[selectedIndex],
     )
   })
 })
@@ -70,7 +74,7 @@ describe("argument updation logic", () => {
   it("should update modeled property", async () => {
     const newValue = "new value"
     await wrapper.find("input").setValue(newValue)
-    expect(propsData.condition.argument).toBe(newValue)
+    expect(sharedProps.condition.argument).toBe(newValue)
   })
 })
 
@@ -78,5 +82,30 @@ describe("condition deletion logic", () => {
   it("should emit deleteCondition on click event", async () => {
     await wrapper.find("button").trigger("click")
     expect(wrapper.emitted()).toHaveProperty("deleteCondition")
+  })
+})
+
+describe("slots", () => {
+  it("should receive correct bound values from fieldUpdation slot", () => {
+    const props = generateProps()
+    const wrapper = mount(FilterCondition, {
+      propsData: props,
+      scopedSlots: {
+        fieldUpdation({
+          condition,
+          fieldNames,
+          updateField,
+        }: {
+          condition: typeof props["condition"]
+          fieldNames: typeof props["fieldNames"]
+          updateField: (fieldName: string) => void
+        }) {
+          expect(condition).toBe(props.condition)
+          expect(fieldNames).toBe(props.fieldNames)
+          updateField(props.fieldNames[0])
+        },
+      },
+    })
+    expect(wrapper.emitted()).toHaveProperty("updateField")
   })
 })
