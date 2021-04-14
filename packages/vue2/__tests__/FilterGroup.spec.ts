@@ -70,6 +70,7 @@ describe("filter deletion logic", () => {
 
   it("should exist after re-setting props with isGroupRemovable set to a truthy value", async () => {
     await wrapper.setProps(generateProps("removableGroup"))
+    expect(wrapper.find("button").exists()).toBe(true)
   })
 
   it("should emit deleteGroup on click event", async () => {
@@ -80,31 +81,19 @@ describe("filter deletion logic", () => {
 
 describe("slots", () => {
   it("should bound correct values to their corresponding slots", () => {
-    const sharedProps = generateProps("removableGroup")
+    const props = generateProps("removableGroup")
     const wrapper = mount(FilterGroup, {
-      propsData: sharedProps,
+      propsData: props,
       scopedSlots: {
-        groupTypes({
-          groupTypes,
-          group,
-        }: {
-          groupTypes: typeof availableGroupTypes
-          group: typeof sharedProps.group
-        }) {
+        groupTypes({ groupTypes, group }: unknown) {
           expect(groupTypes).toEqual(groupTypes)
-          expect(group).toBe(sharedProps.group)
+          expect(group).toBe(props.group)
         },
-        filterAddition({
-          filterTypes,
-          addFilter,
-        }: {
-          filterTypes: typeof availableFilterTypes
-          addFilter(newFilterType: FilterType): void
-        }) {
+        filterAddition({ filterTypes, addFilter }: unknown) {
           expect(filterTypes).toEqual(availableFilterTypes)
           addFilter(FilterType.GROUP)
         },
-        groupDeletion({ deleteGroup }: { deleteGroup(): void }) {
+        groupDeletion({ deleteGroup }: unknown) {
           deleteGroup()
         },
       },
