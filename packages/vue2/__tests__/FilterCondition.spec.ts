@@ -86,78 +86,35 @@ describe("condition deletion logic", () => {
 })
 
 describe("slots", () => {
-  const sharedProps = generateProps()
-  it("should receive correct bound values from fieldUpdation slot", () => {
+  it("should bound correct values to their corresponding slots", () => {
+    const props = generateProps()
     const wrapper = mount(FilterCondition, {
-      propsData: sharedProps,
+      propsData: props,
       scopedSlots: {
-        fieldUpdation({
-          condition,
-          fieldNames,
-          updateField,
-        }: {
-          condition: typeof sharedProps["condition"]
-          fieldNames: typeof sharedProps["fieldNames"]
-          updateField: (fieldName: string) => void
-        }) {
-          expect(condition).toBe(sharedProps.condition)
-          expect(fieldNames).toBe(sharedProps.fieldNames)
-          updateField(sharedProps.fieldNames[2])
+        fieldUpdation({ condition, fieldNames, updateField }: unknown) {
+          expect(condition).toBe(props.condition)
+          expect(fieldNames).toBe(props.fieldNames)
+          updateField(props.fieldNames[1])
         },
-      },
-    })
-    expect(wrapper.emitted()).toHaveProperty("updateField")
-  })
-
-  it("should receive correct bound values from methodUpdation slot", () => {
-    mount(FilterCondition, {
-      propsData: sharedProps,
-      scopedSlots: {
         methodUpdation({
           numericMethodNames,
           nominalMethodNames,
           condition,
-        }: {
-          numericMethodNames: false
-          nominalMethodNames: typeof sharedProps["nominalMethodNames"]
-          condition: typeof sharedProps["fieldNames"]
-        }) {
+        }: unknown) {
           expect(numericMethodNames).toBe(false)
-          expect(nominalMethodNames).toBe(sharedProps.nominalMethodNames)
-          expect(condition).toBe(sharedProps.condition)
+          expect(nominalMethodNames).toBe(props.nominalMethodNames)
+          expect(condition).toBe(props.condition)
+        },
+        argumentUpdation({ condition }: unknown) {
+          expect(condition).toBe(props.condition)
+        },
+        conditionDeletion({ deleteCondition }: unknown) {
+          deleteCondition(props.condition)
         },
       },
     })
-  })
-
-  it("should receive correct bound values from argumentUpdation slot", () => {
-    mount(FilterCondition, {
-      propsData: sharedProps,
-      scopedSlots: {
-        argumentUpdation({
-          condition,
-        }: {
-          condition: typeof sharedProps["fieldNames"]
-        }) {
-          expect(condition).toBe(sharedProps.condition)
-        },
-      },
-    })
-  })
-
-  it("should receive correct bound values from conditionDeletion slot", () => {
-    const wrapper = mount(FilterCondition, {
-      propsData: sharedProps,
-      scopedSlots: {
-        conditionDeletion({
-          deleteCondition,
-        }: {
-          deleteCondition: (condition: typeof sharedProps["condition"]) => void
-        }) {
-          deleteCondition(sharedProps.condition)
-        },
-      },
-    })
-    expect(wrapper.emitted()).toHaveProperty("deleteCondition")
+    const emittedEvents = wrapper.emitted()
+    expect(emittedEvents).toHaveProperty("updateField")
+    expect(emittedEvents).toHaveProperty("deleteCondition")
   })
 })
