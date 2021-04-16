@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filter addition logic should emit addFilter on change event with correct paramaters 1`] = `
+Array [
+  Array [],
+  "condition",
+]
+`;
+
+exports[`group types logic should update modeled property 1`] = `"not and"`;
+
+exports[`slots should bound correct values to their corresponding slots 1`] = `
+Array [
+  "group",
+  "condition",
+]
+`;

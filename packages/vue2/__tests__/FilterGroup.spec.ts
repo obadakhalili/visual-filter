@@ -3,9 +3,6 @@ import { FilterType, GroupType } from "@visual-filter/common"
 
 import FilterGroup from "../src/VueVisualFilter/FilterGroup.vue"
 
-const availableFilterTypes = Object.values(FilterType)
-const availableGroupTypes = Object.values(GroupType)
-
 function generateProps(isGroupRemovable: boolean | string = false) {
   return {
     group: {
@@ -30,9 +27,7 @@ describe("group types logic", () => {
       .findAll("option")
       .at(selectedGroupIndex)
       .setSelected()
-    expect(sharedProps.group.groupType).toBe(
-      availableGroupTypes[selectedGroupIndex],
-    )
+    expect(sharedProps.group.groupType).toMatchSnapshot()
   })
 })
 
@@ -56,10 +51,7 @@ describe("filter addition logic", () => {
   it("should emit addFilter on change event with correct paramaters", () => {
     const emittedEvents = wrapper.emitted()
     const [params] = emittedEvents.addFilter as unknown[][]
-    expect(params).toEqual([
-      sharedProps.group.filters,
-      availableFilterTypes[selectedFilterIndex],
-    ])
+    expect(params).toMatchSnapshot()
   })
 })
 
@@ -90,7 +82,7 @@ describe("slots", () => {
           expect(group).toBe(props.group)
         },
         filterAddition({ filterTypes, addFilter }: unknown) {
-          expect(filterTypes).toEqual(availableFilterTypes)
+          expect(filterTypes).toMatchSnapshot()
           addFilter(FilterType.GROUP)
         },
         groupDeletion({ deleteGroup }: unknown) {
