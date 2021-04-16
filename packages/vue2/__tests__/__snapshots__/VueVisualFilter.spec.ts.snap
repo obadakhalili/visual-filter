@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`computed properties computes correct values 1`] = `
+Array [
+  "First Name",
+  "Last Name",
+  "Grade",
+]
+`;
+
+exports[`computed properties computes correct values 2`] = `
+Array [
+  "=",
+  ">",
+  "<",
+]
+`;
+
+exports[`computed properties computes correct values 3`] = `
+Array [
+  "contains",
+  "startsWith",
+  "endsWith",
+]
+`;
+
+exports[`methods adds correct filter objects by addFilter method 1`] = `
+Object {
+  "filters": Array [],
+  "groupType": "and",
+  "type": "group",
+}
+`;
+
+exports[`methods adds correct filter objects by addFilter method 2`] = `
+Object {
+  "argument": "",
+  "dataType": "nominal",
+  "fieldName": "First Name",
+  "method": "contains",
+  "type": "condition",
+}
+`;
+
+exports[`methods doesn't update condition field when changed to same type 1`] = `
+Object {
+  "argument": "",
+  "dataType": "nominal",
+  "fieldName": "First Name",
+  "method": "contains",
+  "type": "condition",
+}
+`;
+
+exports[`methods removes correct filter object by removeFilter method 1`] = `
+Array [
+  Object {
+    "argument": "",
+    "dataType": "nominal",
+    "fieldName": "First Name",
+    "method": "contains",
+    "type": "condition",
+  },
+]
+`;
+
+exports[`methods updates condition field when changed to different type 1`] = `
+Object {
+  "argument": "",
+  "dataType": "numeric",
+  "fieldName": "First Name",
+  "method": "=",
+  "type": "condition",
+}
+`;
+
+exports[`watcher should emit update-filter event with correct params when listener is passed 1`] = `
+Array [
+  Object {
+    "data": Array [
+      Object {
+        "name": "First Name",
+        "type": "nominal",
+        "values": Array [],
+      },
+      Object {
+        "name": "Last Name",
+        "type": "nominal",
+        "values": Array [],
+      },
+      Object {
+        "name": "Grade",
+        "type": "numeric",
+        "values": Array [],
+      },
+    ],
+    "filter": Object {
+      "filters": Array [],
+      "groupType": "and",
+      "type": "group",
+    },
+  },
+]
+`;
