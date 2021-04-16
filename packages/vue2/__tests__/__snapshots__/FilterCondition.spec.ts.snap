@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`field updation logic should emit updateField on change event with correct paramaters 1`] = `
+Array [
+  Object {
+    "argument": "John",
+    "dataType": "nominal",
+    "fieldName": "Last Name",
+    "method": "contains",
+    "type": "condition",
+  },
+  "Last Name",
+]
+`;
+
+exports[`field updation logic should update modeled property 1`] = `"Last Name"`;
+
+exports[`method updation logic should update modeled property 1`] = `"startsWith"`;
