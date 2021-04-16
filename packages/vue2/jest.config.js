@@ -1,8 +1,9 @@
+const baseConfig = require("../../jest.config.js")
+
 module.exports = {
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts)$",
+  ...baseConfig,
   transform: {
-    "\\.js$": "babel-jest",
-    "\\.ts$": "ts-jest",
+    ...baseConfig.transform,
     "\\.vue$": "vue-jest",
   },
 }
