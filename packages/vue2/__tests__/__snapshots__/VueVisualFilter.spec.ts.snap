@@ -73,3 +73,32 @@ Object {
   "type": "condition",
 }
 `;
+
+exports[`watcher should emit update-filter event with correct params when listener is passed 1`] = `
+Array [
+  Object {
+    "data": Array [
+      Object {
+        "name": "First Name",
+        "type": "nominal",
+        "values": Array [],
+      },
+      Object {
+        "name": "Last Name",
+        "type": "nominal",
+        "values": Array [],
+      },
+      Object {
+        "name": "Grade",
+        "type": "numeric",
+        "values": Array [],
+      },
+    ],
+    "filter": Object {
+      "filters": Array [],
+      "groupType": "and",
+      "type": "group",
+    },
+  },
+]
+`;
