@@ -10,8 +10,6 @@ An unopinionated Vue visual filtering component. It's built with customizability
 
 [![demo-gif.gif](https://s4.gifyu.com/images/demo-gif.gif)](https://gifyu.com/image/Z18P)
 
-- You can find a complete code example in the [dev dir](https://github.com/obadakhalili/vue-visual-filter/tree/main/dev), within the library repo.
-
 # Prerequisites
 
 - Node version 12.0.0 or higher.
@@ -19,60 +17,15 @@ An unopinionated Vue visual filtering component. It's built with customizability
 
 # Installation
 
-- From a package manager:
+- [@visual-filter/vue2]()
+- [@visual-filter/vue3]()
 
-```sh
-yarn add vue-visual-filter
-# OR
-npm install vue-visual-filter
-```
+# Setting Up The Component
 
-```js
-// JS
-import VueVisualFilter from "vue-visual-filter";
-// OR ESM distro
-import VueVisualFilter from "vue-visual-filter/dist/vue-visual-filter.esm.js";
+- [@visual-filter/vue2](https://github.com/obadakhalili/vue-visual-filter/tree/main/packages/vue2)
+- [@visual-filter/vue3](https://github.com/obadakhalili/vue-visual-filter/tree/main/packages/vue3)
 
-// CSS
-import "vue-visual-filter/dist/styles.css";
-```
-
-- For CDN users:
-
-```html
-<!-- CSS -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/vue-visual-filter@0.8.2/dist/styles.css"
-/>
-
-<!-- JS -->
-<script src="https://unpkg.com/vue-visual-filter@0.8.2/dist/vue-visual-filter.min.js"></script>
-<!-- OR -->
-<script src="https://cdn.jsdelivr.net/npm/vue-visual-filter@0.8.2/dist/vue-visual-filter.min.js"></script>
-```
-
-## Setting Up The Component
-
-```js
-const app = Vue.createApp({});
-
-// Global installation
-app.use(VueVisualFilter);
-// OR
-app.component(VueVisualFilter.name, VueVisualFilter);
-
-app.mount("#app");
-
-// Local installation in components option
-const app = Vue.createApp({
-  components: { VueVisualFilter },
-});
-
-app.mount("#app");
-```
-
-# Usage
+# Usage (for both @visual-filter/vue2, and @visual-filter/vue3)
 
 Once you're set up, and ready to start using the component. Reference the component's name in your template:
 
@@ -93,18 +46,19 @@ It contains two options:
 
 ```ts
 interface Data {
-  name: string;
-  type: "numeric" | "nominal";
-  values: any[];
-}[];
+  name: string
+  type: "numeric" | "nominal"
+  values: any[]
+}
+;[]
 ```
 
 - `methods`: An object that contains the methods to be used to filter the data. Definition:
 
 ```ts
 interface Methods {
-  numeric: Record<string, (cellValue: any, argument: string) => boolean>;
-  nominal: Record<string, (cellValue: any, argument: string) => boolean>;
+  numeric: Record<string, (cellValue: any, argument: string) => boolean>
+  nominal: Record<string, (cellValue: any, argument: string) => boolean>
 }
 ```
 
@@ -121,7 +75,6 @@ Example:
 ```vue
 <template>
   <vue-visual-filter
-    v-if="filteringOptions"
     :filtering-options="filteringOptions"
     @filter-update="captureFilterUpdate"
   >
@@ -131,7 +84,6 @@ Example:
           v-for="type in groupTypes"
           :key="type"
           :value="type"
-          :style="{ width: 'auto' }"
         ></el-option>
       </el-select>
     </template>
@@ -145,7 +97,6 @@ Example:
         size="mini"
       >
         <i class="el-icon-plus"></i>
-
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item
@@ -199,7 +150,6 @@ Example:
           :value="method"
         ></el-option>
       </el-select>
-
       <el-select
         v-else
         v-model="condition.method"
@@ -219,7 +169,7 @@ Example:
         v-model="condition.argument"
         size="mini"
         placeholder="Argument"
-        class="w-auto"
+        :style="{ width: 'auto' }"
       ></el-input>
     </template>
 
@@ -237,14 +187,3 @@ Example:
 ```
 
 The example above uses the [element-plus](http://element-plus.org/) UI framework for the filter components. But you can provide whichever content fits your need best.
-
-# To-do's
-
-- [@visual-filter/vue3](https://github.com/obadakhalili/vue-visual-filter/tree/dev/packages/vue3).
-- [@visual-filter/vue2](https://github.com/obadakhalili/vue-visual-filter/tree/dev/packages/vue2).
-- @visual-filter/react. **TBW**.
-- [@visual-filter/applyer](https://github.com/obadakhalili/vue-visual-filter/tree/dev/packages/applyer).
-- Write the above using TypeScript (except @visual-filter/vue2), and integrate unit testing into the code **WIP**.
-
-**You can trace the work being done to the above goals in the [dev](https://github.com/obadakhalili/vue-visual-filter/tree/dev) branch**.
-
