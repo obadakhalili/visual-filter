@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/common",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Shared utils for the visual-filter packages",
   "author": "Obada Khalili",
   "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
@@ -19,8 +19,8 @@
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
     "build": "tsc --project tsconfig.build.json",
     "clean": "rm -rf dist",
-    "prepare": "npm run build",
-    "version": "npm run lint && git add .",
+    "prepare": "yarn build",
+    "version": "yarn format . && git add .",
     "postversion": "git push origin main && git push origin main --tags"
   },
   "devDependencies": {
