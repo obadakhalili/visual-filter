@@ -21,11 +21,7 @@ const wrapper = mount<FilterGroup & { [name: string]: any }>(FilterGroup, {
 
 describe("group types logic", () => {
   it("should update modeled property", async () => {
-    await wrapper
-      .find("select")
-      .findAll("option")
-      .at(1)
-      .setSelected()
+    await wrapper.find("select").findAll("option").at(1).setSelected()
     expect(sharedProps.group.groupType).toMatchSnapshot()
   })
 })
@@ -34,12 +30,7 @@ describe("filter addition logic", () => {
   const addFilterSpy = jest.spyOn(wrapper.vm, "addFilter")
 
   beforeAll(async () => {
-    await wrapper
-      .findAll("select")
-      .at(1)
-      .findAll("option")
-      .at(1)
-      .setSelected()
+    await wrapper.findAll("select").at(1).findAll("option").at(1).setSelected()
   })
 
   it("should call addFilter method on change event", () => {

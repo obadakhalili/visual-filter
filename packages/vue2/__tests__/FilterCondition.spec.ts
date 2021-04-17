@@ -27,11 +27,7 @@ describe("field updation logic", () => {
   const updateFieldSpy = jest.spyOn(wrapper.vm, "updateField")
 
   beforeAll(async () => {
-    await wrapper
-      .find("select")
-      .findAll("option")
-      .at(1)
-      .setSelected()
+    await wrapper.find("select").findAll("option").at(1).setSelected()
   })
 
   it("should update modeled property", () => {
