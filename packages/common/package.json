@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/common",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Shared utils for the visual-filter packages",
   "author": "Obada Khalili",
   "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
