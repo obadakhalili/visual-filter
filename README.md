@@ -15,12 +15,7 @@ An unopinionated Vue visual filtering component. It's built with customizability
 - Node version 12.0.0 or higher.
 - NPM.
 
-# Installation
-
-- [@visual-filter/vue2]()
-- [@visual-filter/vue3]()
-
-# Setting Up The Component
+# Installation, and Setting Up The Component
 
 - [@visual-filter/vue2](https://github.com/obadakhalili/vue-visual-filter/tree/main/packages/vue2)
 - [@visual-filter/vue3](https://github.com/obadakhalili/vue-visual-filter/tree/main/packages/vue3)
