@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/vue2",
-  "version": "1.0.0",
+  "version": "0.9.1",
   "description": "🕵️‍♂️ An unopinionated advanced visual filtering component for Vue 2",
   "author": "Obada Khalili",
   "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
@@ -34,8 +34,8 @@
     "test:watch": "jest --watch",
     "build": "rollup --config ../../rollup.config.js --environment NODE_ENV:production,package:vue2",
     "clean": "rm -rf dist",
-    "prepare": "npm run build",
-    "version": "npm run lint && git add .",
+    "prepare": "yarn build",
+    "version": "yarn format . && git add .",
     "postversion": "git push origin main && git push origin main --tags"
   },
   "dependencies": {
