@@ -1,16 +1,44 @@
 {
   "name": "@visual-filter/vue3",
-  "version": "0.9.0",
+  "version": "1.0.0",
+  "description": "🕵️‍♂️ An unopinionated advanced visual filtering component for Vue 3",
+  "author": "Obada Khalili",
+  "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obadakhalili/vue-visual-filter.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "component",
+    "lib",
+    "advanced",
+    "visual",
+    "filtering"
+  ],
+  "files": [
+    "dist/*",
+    "src/**/*.vue"
+  ],
+  "main": "dist/component.cjs.js",
+  "browser": "dist/component.cjs.js",
+  "module": "dist/component.esm.js",
+  "unpkg": "dist/component.min.js",
   "scripts": {
     "dev": "vite --port 8081",
     "dev:rebuild": "yarn run dev --force",
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
     "build": "rollup --config ../../rollup.config.js --environment NODE_ENV:production,package:vue3",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepare": "yarn build",
+    "version": "yarn format . && git add .",
+    "postversion": "git push origin main && git push origin main --tags"
   },
   "dependencies": {
-    "@visual-filter/applyer": "0.9.0",
-    "@visual-filter/common": "0.9.0"
+    "@visual-filter/applyer": "0.0.1",
+    "@visual-filter/common": "1.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.1",
@@ -19,5 +47,11 @@
     "rollup": "^2.44.0",
     "vite": "^2.1.5",
     "vue": "^3.0.11"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.11"
+  },
+  "engines": {
+    "node": ">=12"
   }
 }
