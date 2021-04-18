@@ -145,9 +145,9 @@ export default {
               : () => {},
           },
           scopedSlots: {
-            groupTypes: this.$slots.groupTypes,
-            filterAddition: this.$slots.filterAddition,
-            groupDeletion: this.$slots.groupDeletion,
+            groupTypes: this.$scopedSlots.groupTypes,
+            filterAddition: this.$scopedSlots.filterAddition,
+            groupDeletion: this.$scopedSlots.groupDeletion,
             groupChildren: () =>
               filter.filters.map((childFilter, childFilterIndex, parentGroup) =>
                 createVisualFilter.call(
@@ -172,10 +172,10 @@ export default {
             deleteCondition: () => this.deleteFilter(filterIndex, parentGroup),
           },
           scopedSlots: {
-            fieldUpdation: this.$slots.fieldUpdation,
-            methodUpdation: this.$slots.methodUpdation,
-            argumentUpdation: this.$slots.argumentUpdation,
-            conditionDeletion: this.$slots.conditionDeletion,
+            fieldUpdation: this.$scopedSlots.fieldUpdation,
+            methodUpdation: this.$scopedSlots.methodUpdation,
+            argumentUpdation: this.$scopedSlots.argumentUpdation,
+            conditionDeletion: this.$scopedSlots.conditionDeletion,
           },
         })
       }
