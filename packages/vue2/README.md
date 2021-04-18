@@ -26,18 +26,18 @@ import "@visual-filter/vue2/dist/styles.css"
 <!-- CSS -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@visual-filter/vue2@1.0.1/dist/styles.css"
+  href="https://unpkg.com/@visual-filter/vue2@1.1.1/dist/styles.css"
 />
 <!-- OR -->
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@visual-filter/vue2@1.0.1/dist/styles.css"
+  href="https://cdn.jsdelivr.net/npm/@visual-filter/vue2@1.1.1/dist/styles.css"
 />
 
 <!-- JS -->
-<script src="https://unpkg.com/@visual-filter/vue2@1.0.1/dist/component.min.js"></script>
+<script src="https://unpkg.com/@visual-filter/vue2@1.1.1/dist/component.min.js"></script>
 <!-- OR -->
-<script src="https://cdn.jsdelivr.net/npm/@visual-filter/vue2@1.0.1/dist/component.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@visual-filter/vue2@1.1.1/dist/component.min.js"></script>
 ```
 
 # Setting Up The Component
