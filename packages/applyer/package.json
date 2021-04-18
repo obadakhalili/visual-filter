@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/applyer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A utility for applying a filter to data.",
   "author": "Obada Khalili",
   "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
@@ -27,7 +27,7 @@
     "postversion": "git push origin main && git push origin main --tags"
   },
   "dependencies": {
-    "@visual-filter/common": "1.0.0"
+    "@visual-filter/common": "1.0.1"
   },
   "devDependencies": {
     "prettier": "^2.2.1",
