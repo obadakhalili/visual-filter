@@ -39,8 +39,8 @@
     "postversion": "git push origin main && git push origin main --tags"
   },
   "dependencies": {
-    "@visual-filter/applyer": "0.0.1",
-    "@visual-filter/common": "1.0.0"
+    "@visual-filter/applyer": "0.0.2",
+    "@visual-filter/common": "1.0.1"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.1.3",
