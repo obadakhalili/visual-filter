@@ -44,8 +44,7 @@ interface Data {
   name: string
   type: "numeric" | "nominal"
   values: any[]
-}
-;[]
+}[]
 ```
 
 - `methods`: An object that contains the methods to be used to filter the data. Definition:
