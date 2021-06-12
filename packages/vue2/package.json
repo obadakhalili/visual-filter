@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/vue2",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "🕵️‍♂️ An unopinionated advanced visual filtering component for Vue 2",
   "author": "Obada Khalili",
   "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
@@ -39,8 +39,8 @@
     "postversion": "git push origin main && git push origin main"
   },
   "dependencies": {
-    "@visual-filter/applyer": "0.0.2",
-    "@visual-filter/common": "1.0.1"
+    "@visual-filter/applyer": "0.0.3",
+    "@visual-filter/common": "1.0.2"
   },
   "devDependencies": {
     "@vue/test-utils": "1.1.3",
