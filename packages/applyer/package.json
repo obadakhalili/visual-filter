@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/applyer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A utility for applying a filter to data.",
   "author": "Obada Khalili",
   "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
