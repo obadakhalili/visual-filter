@@ -1,6 +1,6 @@
 # The What
 
-An unopinionated Vue visual filtering component. It's built with customizability in mind.
+A headless unopinionated advanced Vue visual filtering component. It's built with customizability in mind.
 
 # Demo and Code Example
 
