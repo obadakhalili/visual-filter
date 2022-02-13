@@ -1298,10 +1298,15 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@vitejs/plugin-vue@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.2.1.tgz#6de49436fc346f829a56676066428e3f011522ac"
-  integrity sha512-TG+LbEUNwfFrx1VyN+iq+PsiGd9MT16hUdJY+BnMXj3MrLAF8m3VYUspTDM3aXoh48YDmAkMjG4gWFRg3lbG5A==
+"@visual-filter/common@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@visual-filter/common/-/common-1.0.1.tgz#5ecb0da73c4c20151a78fccebf86f130364e96d8"
+  integrity sha512-ZwR6lsQf0ic2trtyqtpRbzu52QM68YD0s32tUK6FVFidXeRiO4d+tCveyc/1qHtcspRSf3vAEMOHSBMSjtHcrQ==
+
+"@vitejs/plugin-vue@1.10.2":
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.10.2.tgz#d718479e2789d8a94b63e00f23f1898ba239253a"
+  integrity sha512-/QJ0Z9qfhAFtKRY+r57ziY4BSbGUTGsPRMpB/Ron3QPwBZM4OZAZHdTa4a8PafCwU5DTatXG8TMDoP8z+oDqJw==
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
