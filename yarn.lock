@@ -1298,6 +1298,11 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@visual-filter/common@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@visual-filter/common/-/common-1.0.1.tgz#5ecb0da73c4c20151a78fccebf86f130364e96d8"
+  integrity sha512-ZwR6lsQf0ic2trtyqtpRbzu52QM68YD0s32tUK6FVFidXeRiO4d+tCveyc/1qHtcspRSf3vAEMOHSBMSjtHcrQ==
+
 "@vitejs/plugin-vue@1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.2.1.tgz#6de49436fc346f829a56676066428e3f011522ac"
@@ -7383,10 +7388,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@4.2.4:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
-  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
+typescript@4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 uglify-js@^2.6.1:
   version "2.8.29"
