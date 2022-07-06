@@ -27,7 +27,7 @@
     "postversion": "git push origin main && git push origin main --tags"
   },
   "devDependencies": {
-    "prettier": "2.2.1",
-    "typescript": "4.2.4"
+    "prettier": "2.7.1",
+    "typescript": "4.7.4"
   }
 }
