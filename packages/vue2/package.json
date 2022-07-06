@@ -64,12 +64,12 @@
     "ts-jest": "26.5.4",
     "typescript": "4.7.4",
     "vite": "2.9.13",
-    "vue": "2.7.3",
+    "vue": "3.2.37",
     "vue-jest": "4.0.1",
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {
-    "vue": "2.7.3"
+    "vue": "3.2.37"
   },
   "engines": {
     "node": ">=12"
