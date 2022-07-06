@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
+    "target": "ES6",
     "paths": {
       "@visual-filter/*": ["packages/*/src"]
     }
