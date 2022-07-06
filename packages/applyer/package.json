@@ -2,26 +2,26 @@
   "name": "@visual-filter/applyer",
   "version": "0.0.3",
   "description": "A utility for applying a filter to data.",
-  "author": "Obada Khalili",
+  "keywords": [
+    "visual-filter"
+  ],
   "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
   "repository": {
     "type": "git",
     "url": "https://github.com/obadakhalili/vue-visual-filter.git"
   },
   "license": "MIT",
-  "keywords": [
-    "visual-filter"
-  ],
+  "author": "Obada Khalili",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "yarn build --watch",
-    "format": "yarn run prettier --ignore-path ../../.gitignore --write",
     "build": "tsc --project tsconfig.build.json",
     "clean": "rm -rf dist",
+    "dev": "yarn build --watch",
+    "format": "yarn run prettier --ignore-path ../../.gitignore --write",
     "prepare": "yarn build",
     "version": "yarn format . && git add .",
     "postversion": "git push origin main && git push origin main --tags"

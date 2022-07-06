@@ -2,13 +2,6 @@
   "name": "@visual-filter/vue3",
   "version": "1.0.1",
   "description": "🕵️‍♂️ An unopinionated advanced visual filtering component for Vue 3",
-  "author": "Obada Khalili",
-  "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/obadakhalili/vue-visual-filter.git"
-  },
-  "license": "MIT",
   "keywords": [
     "vue",
     "vue3",
@@ -18,20 +11,27 @@
     "visual",
     "filtering"
   ],
+  "homepage": "https://github.com/obadakhalili/vue-visual-filter.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obadakhalili/vue-visual-filter.git"
+  },
+  "license": "MIT",
+  "author": "Obada Khalili",
+  "main": "dist/component.cjs.js",
+  "unpkg": "dist/component.min.js",
+  "module": "dist/component.esm.js",
+  "browser": "dist/component.cjs.js",
   "files": [
     "dist/*",
     "src/**/*.vue"
   ],
-  "main": "dist/component.cjs.js",
-  "browser": "dist/component.cjs.js",
-  "module": "dist/component.esm.js",
-  "unpkg": "dist/component.min.js",
   "scripts": {
+    "build": "rollup --config ../../rollup.config.js --environment NODE_ENV:production,package:vue3",
+    "clean": "rm -rf dist",
     "dev": "vite --port 8081",
     "dev:rebuild": "yarn run dev --force",
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
-    "build": "rollup --config ../../rollup.config.js --environment NODE_ENV:production,package:vue3",
-    "clean": "rm -rf dist",
     "prepare": "npm run build",
     "version": "npm run format . && git add .",
     "postversion": "git push origin main && git push origin main"
@@ -41,10 +41,27 @@
     "@visual-filter/common": "1.0.2"
   },
   "devDependencies": {
+    "@babel/core": "7.18.6",
+    "@babel/preset-env": "7.18.6",
+    "@rollup/plugin-babel": "5.3.1",
+    "@rollup/plugin-commonjs": "22.0.1",
+    "@rollup/plugin-node-resolve": "13.3.0",
+    "@types/jest": "26.0.23",
     "@vitejs/plugin-vue": "2.3.3",
     "@vue/compiler-sfc": "3.2.37",
+    "autoprefixer": "10.4.7",
+    "jest": "26.6.3",
+    "postcss": "8.4.14",
     "prettier": "2.7.1",
     "rollup": "2.75.7",
+    "rollup-plugin-ignore-import": "1.3.2",
+    "rollup-plugin-postcss": "4.0.2",
+    "rollup-plugin-terser": "7.0.2",
+    "rollup-plugin-vue2": "npm:rollup-plugin-vue@5.1.9",
+    "rollup-plugin-vue3": "npm:rollup-plugin-vue@6.0.0",
+    "tailwindcss": "3.1.4",
+    "ts-jest": "26.5.4",
+    "typescript": "4.7.4",
     "vite": "2.9.13",
     "vue": "3.2.37"
   },
