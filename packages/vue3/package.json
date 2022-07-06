@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/vue3",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "🕵️‍♂️ An unopinionated advanced visual filtering component for Vue 3",
   "keywords": [
     "vue",
@@ -32,13 +32,11 @@
     "dev": "vite --port 8081",
     "dev:rebuild": "yarn run dev --force",
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
-    "prepare": "npm run build",
-    "version": "npm run format . && git add .",
-    "postversion": "git push origin main && git push origin main"
+    "preversion": "npm run build"
   },
   "dependencies": {
-    "@visual-filter/applyer": "0.0.3",
-    "@visual-filter/common": "1.0.2"
+    "@visual-filter/applyer": "0.0.4",
+    "@visual-filter/common": "1.0.3"
   },
   "devDependencies": {
     "@babel/core": "7.18.6",

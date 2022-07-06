@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/applyer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A utility for applying a filter to data.",
   "keywords": [
     "visual-filter"
@@ -22,12 +22,10 @@
     "clean": "rm -rf dist",
     "dev": "yarn build --watch",
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
-    "prepare": "yarn build",
-    "version": "yarn format . && git add .",
-    "postversion": "git push origin main && git push origin main --tags"
+    "preversion": "yarn build"
   },
   "dependencies": {
-    "@visual-filter/common": "1.0.2"
+    "@visual-filter/common": "1.0.3"
   },
   "devDependencies": {
     "prettier": "2.7.1",

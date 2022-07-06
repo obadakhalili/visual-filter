@@ -1,6 +1,6 @@
 {
   "name": "@visual-filter/common",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Shared utilities for the @visual-filter packages",
   "keywords": [
     "visual-filter"
@@ -22,9 +22,7 @@
     "clean": "rm -rf dist",
     "dev": "yarn build --watch",
     "format": "yarn run prettier --ignore-path ../../.gitignore --write",
-    "prepare": "yarn build",
-    "version": "yarn format . && git add .",
-    "postversion": "git push origin main && git push origin main --tags"
+    "preversion": "yarn build"
   },
   "devDependencies": {
     "prettier": "2.7.1",
