@@ -45,7 +45,7 @@
     "@vue/compiler-sfc": "3.0.11",
     "prettier": "2.2.1",
     "rollup": "2.51.2",
-    "vite": "2.3.7",
+    "vite": "2.9.13",
     "vue": "3.0.11"
   },
   "peerDependencies": {

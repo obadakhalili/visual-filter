@@ -47,7 +47,7 @@
     "jest": "26.6.3",
     "prettier": "2.2.1",
     "rollup": "2.51.2",
-    "vite": "2.3.7",
+    "vite": "2.9.13",
     "vite-plugin-vue2": "1.4.3",
     "vue": "2.6.12",
     "vue-jest": "4.0.1"
