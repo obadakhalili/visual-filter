@@ -1,4 +1,4 @@
-import { render } from "@testing-library/vue"
+import { render, fireEvent } from "@testing-library/vue"
 import "@testing-library/jest-dom"
 import { GroupType, FilterType } from "@visual-filter/common"
 
@@ -43,7 +43,9 @@ beforeEach((ctx) => {
   }
 })
 
-test("`filteringOptions` prop validator should work as expected", ({ commonProps }) => {
+test("`filteringOptions` prop validator should work as expected", ({
+  commonProps,
+}) => {
   const filteringOptionsValidator =
     VueVisualFilter.props.filteringOptions.validator
 
@@ -117,7 +119,7 @@ test("`filteringOptions` prop validator should work as expected", ({ commonProps
     }),
   ).toBeFalsy()
 
-  // TODO: should be considered
+  // TODO: should be handled
   // expect(
   //   filteringOptionsValidator({
   //     data: [{ name: "Firstname", type: "nominal", values: ["a"] }],
@@ -163,4 +165,22 @@ test("after initial render we should have group type and filter type selects wit
 
   expect(filterTypeSelect).toBeTruthy()
   expect(filterTypeSelect).toHaveValue(FilterType.GROUP)
+})
+
+test("expect `onFilterUpdate` event to be called with correct parameters when changing group type select", async ({ commonProps }) => {
+  const spyFilterUpdateEvent = vi.fn()
+  const methods = render(VueVisualFilter, {
+    propsData: { ...commonProps, onFilterUpdate: spyFilterUpdateEvent },
+  })
+
+  const groupTypeSelect = methods.queryByTestId("group-type-select")
+
+  await fireEvent.update(groupTypeSelect, GroupType.NOT_AND)
+  expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
+
+  await fireEvent.update(groupTypeSelect, GroupType.OR)
+  expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
+
+  await fireEvent.update(groupTypeSelect, GroupType.NOT_OR)
+  expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
 })

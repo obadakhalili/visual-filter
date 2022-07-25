@@ -1,0 +1,199 @@
+// Vitest Snapshot v1
+
+exports[`expect \`onFilterUpdate\` event to be called with correct parameters when changing group type select 1`] = `
+[
+  [
+    {
+      "data": [
+        {
+          "name": "First Name",
+          "type": "nominal",
+          "values": [
+            "Foo",
+            "Fizz",
+          ],
+        },
+        {
+          "name": "Last Name",
+          "type": "nominal",
+          "values": [
+            "Bar",
+            "Buzz",
+          ],
+        },
+        {
+          "name": "Age",
+          "type": "numeric",
+          "values": [
+            18,
+            19,
+          ],
+        },
+      ],
+      "filter": {
+        "filters": [],
+        "groupType": "not and",
+        "type": "group",
+      },
+    },
+  ],
+]
+`;
+
+exports[`expect \`onFilterUpdate\` event to be called with correct parameters when changing group type select 2`] = `
+[
+  [
+    {
+      "data": [
+        {
+          "name": "First Name",
+          "type": "nominal",
+          "values": [
+            "Foo",
+            "Fizz",
+          ],
+        },
+        {
+          "name": "Last Name",
+          "type": "nominal",
+          "values": [
+            "Bar",
+            "Buzz",
+          ],
+        },
+        {
+          "name": "Age",
+          "type": "numeric",
+          "values": [
+            18,
+            19,
+          ],
+        },
+      ],
+      "filter": {
+        "filters": [],
+        "groupType": "not and",
+        "type": "group",
+      },
+    },
+  ],
+  [
+    {
+      "data": [
+        {
+          "name": "First Name",
+          "type": "nominal",
+          "values": [],
+        },
+        {
+          "name": "Last Name",
+          "type": "nominal",
+          "values": [],
+        },
+        {
+          "name": "Age",
+          "type": "numeric",
+          "values": [],
+        },
+      ],
+      "filter": {
+        "filters": [],
+        "groupType": "or",
+        "type": "group",
+      },
+    },
+  ],
+]
+`;
+
+exports[`expect \`onFilterUpdate\` event to be called with correct parameters when changing group type select 3`] = `
+[
+  [
+    {
+      "data": [
+        {
+          "name": "First Name",
+          "type": "nominal",
+          "values": [
+            "Foo",
+            "Fizz",
+          ],
+        },
+        {
+          "name": "Last Name",
+          "type": "nominal",
+          "values": [
+            "Bar",
+            "Buzz",
+          ],
+        },
+        {
+          "name": "Age",
+          "type": "numeric",
+          "values": [
+            18,
+            19,
+          ],
+        },
+      ],
+      "filter": {
+        "filters": [],
+        "groupType": "not and",
+        "type": "group",
+      },
+    },
+  ],
+  [
+    {
+      "data": [
+        {
+          "name": "First Name",
+          "type": "nominal",
+          "values": [],
+        },
+        {
+          "name": "Last Name",
+          "type": "nominal",
+          "values": [],
+        },
+        {
+          "name": "Age",
+          "type": "numeric",
+          "values": [],
+        },
+      ],
+      "filter": {
+        "filters": [],
+        "groupType": "or",
+        "type": "group",
+      },
+    },
+  ],
+  [
+    {
+      "data": [
+        {
+          "name": "First Name",
+          "type": "nominal",
+          "values": [],
+        },
+        {
+          "name": "Last Name",
+          "type": "nominal",
+          "values": [],
+        },
+        {
+          "name": "Age",
+          "type": "numeric",
+          "values": [],
+        },
+      ],
+      "filter": {
+        "filters": [],
+        "groupType": "not or",
+        "type": "group",
+      },
+    },
+  ],
+]
+`;

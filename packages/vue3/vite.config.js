@@ -5,6 +5,7 @@ module.exports = defineConfig({
   ...require("../../vite.config.js"),
   plugins: [vue()],
   test: {
+    globals: true,
     environment: "jsdom",
   },
 })
