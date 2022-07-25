@@ -43,6 +43,110 @@ beforeEach((ctx) => {
   }
 })
 
+test("`filteringOptions` prop validator should work as expected", ({ commonProps }) => {
+  const filteringOptionsValidator =
+    VueVisualFilter.props.filteringOptions.validator
+
+  expect(filteringOptionsValidator(undefined)).toBeFalsy()
+
+  expect(filteringOptionsValidator(null)).toBeFalsy()
+
+  expect(filteringOptionsValidator({})).toBeFalsy()
+
+  expect(filteringOptionsValidator({ data: [] })).toBeFalsy()
+
+  expect(filteringOptionsValidator({ data: [{}] })).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({ data: [{ name: "Firstname" }] }),
+  ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [{ name: "Firstname", type: "nominal" }],
+    }),
+  ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [{ name: "Firstname", type: "nominal", values: [] }],
+    }),
+  ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [{ name: "Firstname", type: "nominal", values: ["Foo"] }],
+    }),
+  ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [
+        { name: "Firstname", type: "nominal", values: ["a", "b"] },
+        { name: "Firstname", type: "nominal", values: ["x"] },
+      ],
+    }),
+  ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [{ name: "Firstname", type: "nominal", values: ["a"] }],
+      methods: {
+        nominal: null,
+      },
+    }),
+  ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [{ name: "Firstname", type: "nominal", values: ["a"] }],
+      methods: {
+        nominal: { a: null },
+      },
+    }),
+  ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [{ name: "Firstname", type: "nominal", values: ["a"] }],
+      methods: {
+        nominal: {
+          contian: () => {},
+        },
+      },
+    }),
+  ).toBeFalsy()
+
+  // TODO: should be considered
+  // expect(
+  //   filteringOptionsValidator({
+  //     data: [{ name: "Firstname", type: "nominal", values: ["a"] }],
+  //     methods: {
+  //       nominal: {
+  //         contian: () => {},
+  //       },
+  //       numeric: 0,
+  //     },
+  //   }),
+  // ).toBeFalsy()
+
+  expect(
+    filteringOptionsValidator({
+      data: [{ name: "Firstname", type: "nominal", values: ["a"] }],
+      methods: {
+        nominal: {
+          contian: () => {},
+        },
+        numeric: {
+          a: null,
+        },
+      },
+    }),
+  ).toBeFalsy()
+
+  expect(filteringOptionsValidator(commonProps.filteringOptions)).toBeTruthy()
+})
+
 test("after initial render we should have group type and filter type selects with correct initial options", ({
   commonProps,
 }) => {
