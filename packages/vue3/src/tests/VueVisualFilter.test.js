@@ -178,12 +178,18 @@ test("expect `onFilterUpdate` event to be called with correct parameters when ch
   const groupTypeSelect = methods.queryByTestId("group-type-select")
 
   await fireEvent.update(groupTypeSelect, GroupType.NOT_AND)
+
+  expect(groupTypeSelect).toHaveValue(GroupType.NOT_AND)
   expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
 
   await fireEvent.update(groupTypeSelect, GroupType.OR)
+
+  expect(groupTypeSelect).toHaveValue(GroupType.OR)
   expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
 
   await fireEvent.update(groupTypeSelect, GroupType.NOT_OR)
+
+  expect(groupTypeSelect).toHaveValue(GroupType.NOT_OR)
   expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
 })
 
