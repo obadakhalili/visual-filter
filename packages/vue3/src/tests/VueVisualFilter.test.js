@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/vue"
 import "@testing-library/jest-dom"
-import { GroupType, FilterType } from "@visual-filter/common"
+import { GroupType, FilterType, DataType } from "@visual-filter/common"
 
 import VueVisualFilter from "@/VueVisualFilter/index.vue"
 
@@ -167,7 +167,9 @@ test("after initial render we should have group type and filter type selects wit
   expect(filterTypeSelect).toHaveValue(FilterType.GROUP)
 })
 
-test("expect `onFilterUpdate` event to be called with correct parameters when changing group type select", async ({ commonProps }) => {
+test("expect `onFilterUpdate` event to be called with correct parameters when changing group type select", async ({
+  commonProps,
+}) => {
   const spyFilterUpdateEvent = vi.fn()
   const methods = render(VueVisualFilter, {
     propsData: { ...commonProps, onFilterUpdate: spyFilterUpdateEvent },
@@ -182,5 +184,55 @@ test("expect `onFilterUpdate` event to be called with correct parameters when ch
   expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
 
   await fireEvent.update(groupTypeSelect, GroupType.NOT_OR)
+  expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
+})
+
+test("filter of type condition renders as expected on initial render after selecting from group type select, and callback is called with correct parameters", async ({
+  commonProps,
+}) => {
+  const spyFilterUpdateEvent = vi.fn()
+  const methods = render(VueVisualFilter, {
+    props: {
+      ...commonProps,
+      onFilterUpdate: spyFilterUpdateEvent,
+    },
+  })
+
+  const filterTypeSelect = methods.queryByTestId("filter-type-select")
+
+  await fireEvent.update(filterTypeSelect, FilterType.CONDITION)
+
+  const {
+    data: [
+      {
+        fieldName: firstFieldName,
+        type: firstFieldType,
+        values: [firstValue],
+      },
+    ],
+    methods: methodsOptions,
+  } = commonProps.filteringOptions
+
+  const fieldNameSelect = methods.queryByTestId("field-name-select")
+
+  expect(fieldNameSelect).toBeTruthy()
+  expect(fieldNameSelect).toHaveValue(firstFieldName)
+
+  const methodSelect = methods.queryByTestId("method-select")
+
+  expect(methodSelect).toBeTruthy()
+  expect(methodSelect).toHaveValue(
+    Object.keys(
+      firstFieldType === DataType.NOMINAL
+        ? methodsOptions.nominal
+        : methodsOptions.numeric,
+    )[0],
+  )
+
+  const argumentInput = methods.queryByTestId("argument-input")
+
+  expect(argumentInput).toBeTruthy()
+  expect(argumentInput).toHaveValue(firstValue)
+
   expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
 })
