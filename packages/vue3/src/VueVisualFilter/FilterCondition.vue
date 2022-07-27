@@ -82,7 +82,7 @@ export default {
       name="conditionDeletion"
       :deleteCondition="() => $emit('deleteCondition', condition)"
     >
-      <button @click="$emit('deleteCondition', condition)">x</button>
+      <button @click="$emit('deleteCondition', condition)" data-testId="remove-condition-button">x</button>
     </slot>
   </div>
 </template>

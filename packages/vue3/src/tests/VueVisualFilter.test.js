@@ -1,4 +1,4 @@
-import { render, fireEvent } from "@testing-library/vue"
+import { render, fireEvent, queryByTestId } from "@testing-library/vue"
 import "@testing-library/jest-dom"
 import { GroupType, FilterType, DataType } from "@visual-filter/common"
 
@@ -208,6 +208,8 @@ test("filter of type condition renders as expected on initial render after selec
 
   await fireEvent.update(filterTypeSelect, FilterType.CONDITION)
 
+  expect(filterTypeSelect).toHaveValue(FilterType.CONDITION)
+
   const {
     data: [
       {
@@ -241,4 +243,74 @@ test("filter of type condition renders as expected on initial render after selec
   expect(argumentInput).toHaveValue(firstValue)
 
   expect(spyFilterUpdateEvent.calls).toMatchSnapshot()
+})
+
+test("end-to-end test the component", async ({ commonProps }) => {
+  let latestCallIndex = -1
+  const spyFilterUpdateEvent = vi.fn(() => {
+    ++latestCallIndex
+  })
+  const methods = render(VueVisualFilter, {
+    props: {
+      ...commonProps,
+      onFilterUpdate: spyFilterUpdateEvent,
+    },
+  })
+
+  await fireEvent.update(
+    methods.queryByTestId("filter-type-select"),
+    FilterType.CONDITION,
+  )
+
+  expect(spyFilterUpdateEvent.calls[latestCallIndex]).toMatchSnapshot()
+
+  await fireEvent.update(
+    methods.queryByTestId("group-type-select"),
+    GroupType.OR,
+  )
+  await fireEvent.update(
+    methods.queryByTestId("filter-type-select"),
+    FilterType.GROUP,
+  )
+  await fireEvent.update(
+    methods.queryAllByTestId("filter-type-select")[1],
+    FilterType.CONDITION,
+  )
+
+  await fireEvent.update(
+    methods.queryAllByTestId("field-name-select")[1],
+    "Last Name",
+  )
+  await fireEvent.update(methods.queryAllByTestId("argument-input")[1], "Buz")
+
+  expect(spyFilterUpdateEvent.calls[latestCallIndex]).toMatchSnapshot()
+
+  await fireEvent.update(
+    methods.queryAllByTestId("filter-type-select")[1],
+    FilterType.CONDITION,
+  )
+
+  await fireEvent.update(
+    methods.queryAllByTestId("field-name-select")[2],
+    "Age",
+  )
+  await fireEvent.update(methods.queryAllByTestId("method-select")[2], ">")
+  await fireEvent.update(methods.queryAllByTestId("argument-input")[2], 18)
+
+  expect(spyFilterUpdateEvent.calls[latestCallIndex]).toMatchSnapshot()
+
+  await fireEvent.click(methods.queryByTestId("remove-group-button"))
+
+  expect(methods.queryAllByTestId("group-type-select").length).toBe(1)
+  expect(methods.queryAllByTestId("filter-type-select").length).toBe(1)
+  expect(spyFilterUpdateEvent.calls[latestCallIndex]).toMatchSnapshot()
+
+  await fireEvent.click(methods.queryByTestId("remove-condition-button"))
+  await fireEvent.update(methods.queryByTestId("group-type-select"), GroupType.AND)
+
+  expect(methods.queryAllByTestId("field-name-select").length).toBe(0)
+  expect(methods.queryAllByTestId("method-select").length).toBe(0)
+  expect(methods.queryAllByTestId("argument-input").length).toBe(0)
+
+  expect(spyFilterUpdateEvent.calls[latestCallIndex]).toMatchSnapshot()
 })

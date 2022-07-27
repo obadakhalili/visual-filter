@@ -58,7 +58,7 @@ export default {
         name="groupDeletion"
         :deleteGroup="() => $emit('deleteGroup', group)"
       >
-        <button @click="$emit('deleteGroup', group)">x</button>
+        <button @click="$emit('deleteGroup', group)" data-testId="remove-group-button">x</button>
       </slot>
     </div>
     <div v-if="group.filters.length" class="ml-10 space-y-1">
