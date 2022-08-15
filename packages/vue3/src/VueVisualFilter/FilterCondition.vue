@@ -46,6 +46,7 @@ export default {
       <select
         v-model="condition.fieldName"
         @change="updateField($event.target.value)"
+        data-testId="field-name-select"
       >
         <option v-for="field in fieldNames" :key="field" :value="field">
           {{ field }}
@@ -60,7 +61,7 @@ export default {
         condition,
       }"
     >
-      <select v-model="condition.method">
+      <select v-model="condition.method" data-testId="method-select">
         <option
           v-for="method in isNumeric ? numericMethodNames : nominalMethodNames"
           :key="method"
@@ -71,13 +72,17 @@ export default {
       </select>
     </slot>
     <slot name="argumentUpdation" :condition="condition">
-      <input type="text" v-model="condition.argument" />
+      <input
+        type="text"
+        v-model="condition.argument"
+        data-testId="argument-input"
+      />
     </slot>
     <slot
       name="conditionDeletion"
       :deleteCondition="() => $emit('deleteCondition', condition)"
     >
-      <button @click="$emit('deleteCondition', condition)">x</button>
+      <button @click="$emit('deleteCondition', condition)" data-testId="remove-condition-button">x</button>
     </slot>
   </div>
 </template>
