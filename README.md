@@ -8,7 +8,7 @@ A headless unopinionated advanced Vue visual filtering component. It's built wit
 
 <br>
 
-[![demo-gif.gif](https://s4.gifyu.com/images/demo-gif.gif)](https://gifyu.com/image/Z18P)
+![Demo GIF](https://madewithnetworkfra.fra1.digitaloceanspaces.com/spatie-space-production/27996/vue-visual-filter-k.gif)
 
 # Prerequisites
 
